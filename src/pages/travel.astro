@@ -22,6 +22,24 @@ const hotels = [
     link: '#',
   },
 ];
+
+const gettingHere = [
+  {
+    numeral: 'I',
+    title: 'By Air',
+    body: 'Fly into Des Moines International Airport (DSM), approximately 20 minutes from the venue. Major airlines serve DSM with connections from most U.S. hubs.',
+  },
+  {
+    numeral: 'II',
+    title: 'By Car',
+    body: 'Des Moines sits at the intersection of I-80 and I-35, making it easily accessible from across the Midwest. Ample parking will be available at the venue — details to follow.',
+  },
+  {
+    numeral: 'III',
+    title: 'Rideshare',
+    body: 'Uber and Lyft are both available in Des Moines and are a wonderful option for getting to and from events — especially on the evening of the reception.',
+  },
+];
 ---
 
 <Layout
@@ -38,94 +56,80 @@ const hotels = [
   />
 
   <!-- Getting here -->
-  <section class="py-20 px-6 max-w-5xl mx-auto">
-    <h2 class="section-title">Getting Here</h2>
-    <div class="section-divider"></div>
+  <section class="py-24 px-6 max-w-5xl mx-auto">
+    <div data-reveal>
+      <p class="eyebrow text-center mb-4">The journey</p>
+      <h2 class="section-title">Getting Here</h2>
+      <div class="section-divider"><span class="gem"></span></div>
+    </div>
 
-    <div class="grid md:grid-cols-3 gap-6">
-
-      <div class="card text-center">
-        <p class="text-3xl mb-4">✈︎</p>
-        <h3 class="font-serif text-xl text-brown-600 mb-2">By Air</h3>
-        <p class="font-sans text-sm text-taupe leading-relaxed">
-          Fly into <strong class="text-brown-500">Des Moines International Airport (DSM)</strong>,
-          approximately 20 minutes from the venue.
-          Major airlines serve DSM with connections from most U.S. hubs.
-        </p>
-      </div>
-
-      <div class="card text-center">
-        <p class="text-3xl mb-4">🚗</p>
-        <h3 class="font-serif text-xl text-brown-600 mb-2">By Car</h3>
-        <p class="font-sans text-sm text-taupe leading-relaxed">
-          Des Moines sits at the intersection of I-80 and I-35,
-          making it easily accessible from across the Midwest.
-          Ample parking will be available at the venue — details to follow.
-        </p>
-      </div>
-
-      <div class="card text-center">
-        <p class="text-3xl mb-4">🚕</p>
-        <h3 class="font-serif text-xl text-brown-600 mb-2">Rideshare</h3>
-        <p class="font-sans text-sm text-taupe leading-relaxed">
-          Uber and Lyft are both available in Des Moines and are a
-          wonderful option for getting to and from events — especially
-          on the evening of the reception.
-        </p>
-      </div>
-
+    <div class="grid md:grid-cols-3 gap-8 mt-12">
+      {gettingHere.map((item, i) => (
+        <div class="card card-hover text-center" data-reveal style={`transition-delay:${i * 0.1}s`}>
+          <p class="font-serif text-2xl text-gold/70 mb-1">{item.numeral}</p>
+          <div class="w-8 h-px bg-gold/40 mx-auto mb-6"></div>
+          <h3 class="font-serif font-medium text-2xl text-brown-600 mb-4">{item.title}</h3>
+          <p class="font-sans font-light text-sm text-taupe leading-relaxed">{item.body}</p>
+        </div>
+      ))}
     </div>
   </section>
 
   <!-- Hotel blocks -->
-  <section class="pb-20 px-6 max-w-5xl mx-auto">
-    <h2 class="section-title">Where to Stay</h2>
-    <div class="section-divider"></div>
-    <p class="font-serif text-lg italic text-brown-400 text-center max-w-xl mx-auto mb-12">
-      We have reserved room blocks at the hotels below for our guests.
-      We recommend booking early — rooms are limited.
-    </p>
+  <section class="pb-24 px-6 max-w-5xl mx-auto">
+    <div data-reveal>
+      <p class="eyebrow text-center mb-4">Rest well</p>
+      <h2 class="section-title">Where to Stay</h2>
+      <div class="section-divider"><span class="gem"></span></div>
+      <p class="font-serif text-xl italic text-brown-400 text-center max-w-xl mx-auto mb-14 leading-relaxed">
+        We have reserved room blocks at the hotels below for our guests.
+        We recommend booking early — rooms are limited.
+      </p>
+    </div>
 
-    <div class="grid md:grid-cols-2 gap-6">
-      {hotels.map(hotel => (
-        <div class="card">
-          <p class="font-sans text-xs tracking-widest uppercase text-gold mb-1">{hotel.note}</p>
-          <h3 class="font-serif text-2xl text-brown-600 mb-1">{hotel.name}</h3>
-          <p class="font-sans text-sm text-taupe mb-4">{hotel.address}</p>
+    <div class="grid md:grid-cols-2 gap-8">
+      {hotels.map((hotel, i) => (
+        <div class="frame-luxe flex flex-col" data-reveal style={`transition-delay:${i * 0.1}s`}>
+          <p class="eyebrow mb-2">{hotel.note}</p>
+          <h3 class="font-serif font-medium text-3xl text-brown-600 mb-2">{hotel.name}</h3>
+          <p class="font-sans font-light text-sm text-taupe mb-6">{hotel.address}</p>
 
           {hotel.code && (
-            <div class="bg-cream border border-brown-100 px-4 py-3 mb-4">
-              <p class="font-sans text-xs text-taupe uppercase tracking-widest">Group code</p>
-              <p class="font-serif text-lg text-brown-600">{hotel.code}</p>
-              <p class="font-sans text-xs text-taupe mt-1">Book by {hotel.deadline}</p>
+            <div class="border-t border-b border-gold/30 py-4 mb-6 text-center">
+              <p class="font-sans font-normal text-[0.6rem] tracking-mega uppercase text-taupe mb-1">Group code</p>
+              <p class="font-serif font-medium text-2xl tracking-[0.15em] text-gold">{hotel.code}</p>
+              <p class="font-sans font-light text-xs text-taupe mt-1">Book by {hotel.deadline}</p>
             </div>
           )}
 
-          <a href={hotel.link} class="btn-outline text-center block">Reserve a Room</a>
+          <a href={hotel.link} class="btn-outline text-center block mt-auto">Reserve a Room</a>
         </div>
       ))}
     </div>
   </section>
 
   <!-- Things to do -->
-  <section class="py-16 bg-parchment px-6 text-center">
-    <h2 class="section-title">While You're in Des Moines</h2>
-    <div class="section-divider"></div>
-    <p class="font-sans text-sm text-brown-500 max-w-2xl mx-auto leading-relaxed mb-10">
-      We hope you will make a weekend of it. Des Moines has wonderful restaurants,
-      art galleries, and the beautiful Principal Riverwalk — perfect for a crisp
-      November stroll with a warm coffee in hand.
-    </p>
-    <div class="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto text-left">
+  <section class="py-24 bg-cream px-6 text-center relative">
+    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-2/3 max-w-xl h-px bg-gradient-to-r from-transparent via-gold/40 to-transparent"></div>
+    <div data-reveal>
+      <p class="eyebrow mb-4">Make a weekend of it</p>
+      <h2 class="section-title">While You're in Des Moines</h2>
+      <div class="section-divider"><span class="gem"></span></div>
+      <p class="font-serif text-xl italic text-brown-400 max-w-2xl mx-auto leading-relaxed mb-14">
+        Des Moines has wonderful restaurants, art galleries, and the beautiful
+        Principal Riverwalk — perfect for a crisp November stroll with a warm coffee in hand.
+      </p>
+    </div>
+    <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto text-left">
       {[
         { name: 'Pappajohn Sculpture Park',  type: 'Art & Culture',   desc: 'A stunning outdoor gallery in the heart of downtown.'       },
         { name: 'East Village',               type: 'Food & Drink',    desc: 'Charming boutiques, cafés, and acclaimed restaurants.'      },
         { name: 'Iowa State Capitol',         type: 'Landmark',        desc: 'One of the most beautiful capitol buildings in the country.' },
-      ].map(item => (
-        <div class="card">
-          <p class="font-sans text-xs tracking-widest uppercase text-gold mb-1">{item.type}</p>
-          <h3 class="font-serif text-lg text-brown-600 mb-1">{item.name}</h3>
-          <p class="font-sans text-sm text-taupe leading-relaxed">{item.desc}</p>
+      ].map((item, i) => (
+        <div class="card card-hover" data-reveal style={`transition-delay:${i * 0.1}s`}>
+          <p class="eyebrow mb-2">{item.type}</p>
+          <h3 class="font-serif font-medium text-2xl text-brown-600 mb-2">{item.name}</h3>
+          <p class="font-sans font-light text-sm text-taupe leading-relaxed">{item.desc}</p>
         </div>
       ))}
     </div>

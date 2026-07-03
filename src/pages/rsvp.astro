@@ -17,16 +17,23 @@ import PageHero from '../components/PageHero.astro';
     poster="https://picsum.photos/seed/maloy-rsvp/1920/1080?grayscale"
   />
 
-  <!-- Form -->
-  <section class="py-20 px-6 max-w-2xl mx-auto">
-    <RSVPForm />
+  <!-- Form — presented like a printed reply card -->
+  <section class="py-24 px-6 max-w-2xl mx-auto">
+    <div class="frame-luxe" data-reveal>
+      <div class="text-center mb-12">
+        <p class="eyebrow mb-4">The pleasure of a reply</p>
+        <h2 class="font-serif font-medium text-4xl text-brown-600">Your Response</h2>
+        <div class="section-divider !my-6"><span class="gem"></span></div>
+      </div>
+      <RSVPForm />
+    </div>
   </section>
 
   <!-- Note -->
-  <section class="pb-20 px-6 max-w-xl mx-auto text-center">
-    <p class="font-sans text-xs text-taupe leading-relaxed">
+  <section class="pb-24 px-6 max-w-xl mx-auto text-center">
+    <p class="font-sans font-light text-xs text-taupe leading-relaxed">
       If you have any trouble submitting, please reach out directly at
-      <a href="mailto:bmaloy19@gmail.com" class="underline hover:text-brown-500 transition-colors">bmaloy19@gmail.com</a>.
+      <a href="mailto:bmaloy19@gmail.com" class="underline underline-offset-4 decoration-gold/40 hover:text-brown-500 transition-colors">bmaloy19@gmail.com</a>.
       We will be happy to note your response personally.
     </p>
   </section>

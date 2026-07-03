@@ -38,11 +38,12 @@ const registries = [
   />
 
   <!-- Heartfelt note -->
-  <section class="py-16 px-6 max-w-2xl mx-auto text-center">
-    <p class="font-serif text-2xl italic text-brown-500 mb-6">
-      "Your presence at our wedding is the greatest gift we could ever ask for."
+  <section class="py-24 px-6 max-w-2xl mx-auto text-center" data-reveal>
+    <p class="font-serif text-6xl text-gold/50 leading-none mb-2" aria-hidden="true">&ldquo;</p>
+    <p class="font-serif text-3xl md:text-4xl italic text-brown-500 leading-relaxed mb-8">
+      Your presence at our wedding is the greatest gift we could ever ask for.
     </p>
-    <p class="font-sans text-base text-brown-400 leading-relaxed">
+    <p class="font-sans font-light text-base text-brown-400 leading-relaxed">
       For those who have asked, we have created a small registry of things
       that will bring warmth and beauty to our home as we begin this new chapter together.
       Any contribution, however small, is received with the deepest gratitude
@@ -51,13 +52,14 @@ const registries = [
   </section>
 
   <!-- Registry cards -->
-  <section class="pb-24 px-6 max-w-4xl mx-auto">
-    <div class="grid md:grid-cols-3 gap-6">
-      {registries.map(r => (
-        <div class="card text-center flex flex-col justify-between">
+  <section class="pb-28 px-6 max-w-4xl mx-auto">
+    <div class="grid md:grid-cols-3 gap-8">
+      {registries.map((r, i) => (
+        <div class="card card-hover text-center flex flex-col justify-between" data-reveal style={`transition-delay:${i * 0.1}s`}>
           <div>
-            <h3 class="font-serif text-2xl text-brown-600 mb-3">{r.name}</h3>
-            <p class="font-sans text-sm text-taupe leading-relaxed mb-6">{r.description}</p>
+            <div class="w-8 h-px bg-gold/40 mx-auto mb-6"></div>
+            <h3 class="font-serif font-medium text-2xl text-brown-600 mb-3">{r.name}</h3>
+            <p class="font-sans font-light text-sm text-taupe leading-relaxed mb-8">{r.description}</p>
           </div>
           <a href={r.link} class="btn-outline">{r.linkText}</a>
         </div>
@@ -66,8 +68,9 @@ const registries = [
   </section>
 
   <!-- Closing sentiment -->
-  <section class="py-16 bg-parchment text-center px-6">
-    <p class="font-serif text-lg italic text-brown-400 max-w-xl mx-auto">
+  <section class="py-20 bg-cream text-center px-6 relative">
+    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-2/3 max-w-xl h-px bg-gradient-to-r from-transparent via-gold/40 to-transparent"></div>
+    <p class="font-serif text-2xl italic text-brown-400 max-w-xl mx-auto leading-relaxed" data-reveal>
       We are simply overjoyed that you will be with us to celebrate.
       Thank you, from the bottom of our hearts.
     </p>

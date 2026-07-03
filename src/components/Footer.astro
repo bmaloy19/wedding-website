@@ -1,17 +1,26 @@
 ---
 ---
 
-<footer class="bg-brown-700 text-brown-200 py-12 mt-24">
+<footer class="relative bg-ink text-brown-200 pt-20 pb-12 mt-28 overflow-hidden">
+  <!-- Gold hairline across the top -->
+  <div class="absolute top-0 left-1/2 -translate-x-1/2 w-2/3 max-w-xl h-px bg-gradient-to-r from-transparent via-gold/60 to-transparent"></div>
+
   <div class="max-w-4xl mx-auto px-6 text-center">
 
-    <p class="font-script text-4xl text-champagne mb-3">Kacey &amp; Bryce</p>
-    <p class="font-sans text-xs tracking-widest uppercase text-taupe mb-6">
-      November 19, 2027 &nbsp;·&nbsp; Des Moines, Iowa
+    <p class="eyebrow text-gold/80 mb-6">Forever begins</p>
+    <p class="font-script text-5xl md:text-6xl text-champagne mb-6">Kacey &amp; Bryce</p>
+
+    <div class="flex items-center justify-center gap-4 mb-8">
+      <span class="block h-px w-16 bg-gradient-to-r from-transparent to-gold/50"></span>
+      <span class="text-gold/80 text-xs">&#10022;</span>
+      <span class="block h-px w-16 bg-gradient-to-l from-transparent to-gold/50"></span>
+    </div>
+
+    <p class="font-serif text-lg tracking-[0.2em] uppercase text-champagne/70 mb-10">
+      November 19, 2027 &nbsp;&middot;&nbsp; Des Moines, Iowa
     </p>
 
-    <div class="w-12 h-px bg-gold opacity-40 mx-auto mb-6"></div>
-
-    <nav class="flex flex-wrap justify-center gap-6 mb-8">
+    <nav class="flex flex-wrap justify-center gap-x-10 gap-y-4 mb-12">
       {[
         { href: '/',          label: 'Home'      },
         { href: '/details',  label: 'Details'   },
@@ -19,14 +28,14 @@
         { href: '/registry', label: 'Registry'  },
         { href: '/rsvp',     label: 'RSVP'      },
       ].map(link => (
-        <a href={link.href} class="font-sans text-xs tracking-widest uppercase text-taupe hover:text-champagne transition-colors">
+        <a href={link.href} class="font-sans font-normal text-[0.65rem] tracking-mega uppercase text-taupe hover:text-champagne transition-colors duration-300">
           {link.label}
         </a>
       ))}
     </nav>
 
-    <p class="font-sans text-xs text-brown-400">
-      Questions? Reach us at <a href="mailto:bmaloy19@gmail.com" class="underline hover:text-champagne transition-colors">bmaloy19@gmail.com</a>
+    <p class="font-sans font-light text-xs text-brown-300/70">
+      Questions? Reach us at <a href="mailto:bmaloy19@gmail.com" class="underline underline-offset-4 decoration-gold/40 hover:text-champagne transition-colors">bmaloy19@gmail.com</a>
     </p>
   </div>
 </footer>

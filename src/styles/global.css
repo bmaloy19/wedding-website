@@ -17,29 +17,33 @@
   }
 
   body {
-    @apply bg-ivory font-sans text-brown-700 antialiased;
+    @apply bg-ivory font-sans font-light text-brown-600 antialiased;
   }
 
   h1, h2, h3, h4, h5, h6 {
     @apply font-serif;
   }
+
+  ::selection {
+    @apply bg-champagne/60 text-brown-700;
+  }
 }
 
 @layer utilities {
   .text-shadow-elegant {
-    text-shadow: 0 2px 24px rgba(61, 36, 21, 0.45);
+    text-shadow: 0 2px 30px rgba(20, 12, 6, 0.55);
   }
   .tracking-mega {
     letter-spacing: 0.4em;
   }
   .animate-fade-up {
     opacity: 0;
-    transform: translateY(24px);
-    animation: fadeUp 1.2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    transform: translateY(28px);
+    animation: fadeUp 1.4s cubic-bezier(0.22, 1, 0.36, 1) forwards;
   }
   .animate-fade-in {
     opacity: 0;
-    animation: fadeIn 1.6s ease forwards;
+    animation: fadeIn 1.8s ease forwards;
   }
 }
 
@@ -55,39 +59,88 @@
   to   { transform: scale(1.08); }
 }
 
+/* Scroll-triggered reveal — elements with [data-reveal] fade up when they
+   enter the viewport (observer lives in Layout.astro). */
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(32px);
+  transition: opacity 1.1s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 1.1s cubic-bezier(0.22, 1, 0.36, 1);
+}
+[data-reveal].is-revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal] { opacity: 1; transform: none; transition: none; }
+  .animate-fade-up, .animate-fade-in { animation: none; opacity: 1; transform: none; }
+  .hero-overlay-media video, .hero-overlay-media img { animation: none; }
+}
+
 @layer components {
   .hero-overlay-media video,
   .hero-overlay-media img {
-    animation: slowZoom 18s ease-out forwards;
+    animation: slowZoom 22s ease-out forwards;
+  }
+
+  /* Micro-label above headings — the quiet, wide-tracked luxury eyebrow */
+  .eyebrow {
+    @apply font-sans text-[0.65rem] font-normal tracking-mega uppercase text-gold;
   }
 
   .section-title {
-    @apply font-serif text-4xl md:text-5xl text-brown-600 text-center mb-4;
+    @apply font-serif font-medium text-5xl md:text-6xl text-brown-600 text-center;
   }
 
+  /* Hairline + diamond ornament */
   .section-divider {
-    @apply flex items-center justify-center gap-4 mb-10;
+    @apply flex items-center justify-center gap-4 my-8;
   }
-
   .section-divider::before,
   .section-divider::after {
     content: '';
-    @apply block h-px w-16 bg-gold opacity-60;
+    @apply block h-px w-20 bg-gradient-to-r from-transparent via-gold/70 to-transparent;
+  }
+  .section-divider > .gem::before {
+    content: '\2726';
+    @apply text-gold text-xs;
   }
 
   .btn-primary {
-    @apply inline-block bg-brown-500 hover:bg-brown-600 text-cream font-sans text-sm tracking-widest uppercase px-8 py-3 transition-colors duration-300;
+    @apply inline-block bg-brown-700 text-champagne font-sans font-normal text-[0.7rem] tracking-mega uppercase px-12 py-4 border border-brown-700 transition-all duration-500 ease-luxe hover:bg-transparent hover:text-brown-700;
   }
 
   .btn-gold {
-    @apply inline-block bg-gold/90 hover:bg-gold text-brown-700 font-sans text-sm tracking-widest uppercase px-10 py-4 transition-all duration-300 shadow-lg hover:shadow-xl;
+    @apply inline-block bg-gold text-ivory font-sans font-normal text-[0.7rem] tracking-mega uppercase px-12 py-4 border border-gold transition-all duration-500 ease-luxe hover:bg-transparent hover:text-gold;
   }
 
   .btn-outline {
-    @apply inline-block border border-brown-400 hover:bg-brown-100 text-brown-600 font-sans text-sm tracking-widest uppercase px-8 py-3 transition-colors duration-300;
+    @apply inline-block border border-gold/60 text-brown-600 font-sans font-normal text-[0.7rem] tracking-mega uppercase px-10 py-3.5 transition-all duration-500 ease-luxe hover:bg-brown-700 hover:border-brown-700 hover:text-champagne;
+  }
+
+  /* Ghost button for use on dark/photo backgrounds */
+  .btn-ghost {
+    @apply inline-block border border-champagne/70 text-champagne font-sans font-normal text-[0.7rem] tracking-mega uppercase px-12 py-4 transition-all duration-500 ease-luxe hover:bg-champagne hover:text-brown-700;
   }
 
   .card {
-    @apply bg-white border border-brown-100 p-8 shadow-sm;
+    @apply bg-white/70 border border-brown-200/50 p-10 transition-all duration-500 ease-luxe;
+  }
+  a.card:hover, .card-hover:hover {
+    @apply border-gold/60 shadow-[0_20px_50px_-24px_rgba(42,27,16,0.25)] -translate-y-1;
+  }
+
+  /* Double hairline frame — printed-invitation feel */
+  .frame-luxe {
+    @apply relative border border-gold/40 bg-white/80 p-8 md:p-14;
+  }
+  .frame-luxe::before {
+    content: '';
+    @apply absolute inset-2 border border-gold/25 pointer-events-none;
+  }
+
+  /* Understated underline inputs */
+  .input-luxe {
+    @apply w-full bg-transparent border-0 border-b border-brown-200 px-1 py-3 font-sans font-light text-base text-brown-700 placeholder:text-taupe/70 placeholder:font-light focus:outline-none focus:border-gold focus:ring-0 transition-colors duration-300;
   }
 }

@@ -21,7 +21,7 @@ const isHome = currentPath === '/';
       : 'bg-ivory/95 backdrop-blur-sm border-b border-brown-100',
   ]}
 >
-  <nav class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+  <nav class="max-w-6xl mx-auto px-6 py-5 flex items-center justify-between">
 
     <!-- Monogram / Logo -->
     <a href="/" id="nav-logo" class:list={[
@@ -32,19 +32,19 @@ const isHome = currentPath === '/';
     </a>
 
     <!-- Desktop links -->
-    <ul class="hidden md:flex items-center gap-8">
+    <ul class="hidden md:flex items-center gap-10">
       {navLinks.map(link => (
         <li>
           <a
             href={link.href}
             data-navlink
             class:list={[
-              'font-sans text-xs tracking-widest uppercase transition-colors duration-200',
+              'nav-link relative font-sans font-normal text-[0.65rem] tracking-mega uppercase pb-1 transition-colors duration-200',
               currentPath === link.href ? 'is-active' : '',
               isHome
                 ? 'text-cream/90 hover:text-champagne'
                 : (currentPath === link.href
-                    ? 'text-brown-600 border-b border-gold pb-0.5'
+                    ? 'text-brown-600'
                     : 'text-taupe hover:text-brown-600'),
             ]}
           >
@@ -61,19 +61,22 @@ const isHome = currentPath === '/';
       aria-label="Toggle menu"
     >
       <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6h16M4 12h16M4 18h16" />
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M4 7h16M4 12h16M4 17h16" />
       </svg>
     </button>
   </nav>
 
   <!-- Mobile menu -->
-  <div id="mobile-menu" class="hidden md:hidden border-t border-brown-100 bg-ivory">
-    <ul class="flex flex-col items-center gap-6 py-8">
+  <div id="mobile-menu" class="hidden md:hidden border-t border-gold/20 bg-ivory/98 backdrop-blur-sm">
+    <ul class="flex flex-col items-center gap-7 py-10">
       {navLinks.map(link => (
         <li>
           <a
             href={link.href}
-            class="font-sans text-xs tracking-widest uppercase text-taupe hover:text-brown-600 transition-colors"
+            class:list={[
+              'font-sans font-normal text-[0.7rem] tracking-mega uppercase transition-colors',
+              currentPath === link.href ? 'text-gold' : 'text-taupe hover:text-brown-600',
+            ]}
           >
             {link.label}
           </a>
@@ -82,6 +85,27 @@ const isHome = currentPath === '/';
     </ul>
   </div>
 </header>
+
+<style>
+  /* Animated gold hairline under desktop links */
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -2px;
+    height: 1px;
+    width: 100%;
+    background-color: theme('colors.gold');
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .nav-link:hover::after,
+  .nav-link.is-active::after {
+    transform: scaleX(1);
+    transform-origin: left;
+  }
+</style>
 
 <script>
   const toggle = document.getElementById('nav-toggle');

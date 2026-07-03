@@ -5,6 +5,7 @@ import PageHero from '../components/PageHero.astro';
 const days = [
   {
     day: 'Day One',
+    numeral: 'I',
     date: 'Friday, November 19, 2027',
     label: 'The Rehearsal & Welcome Dinner',
     tagline: 'An intimate evening to welcome our dearest family and friends.',
@@ -16,6 +17,7 @@ const days = [
   },
   {
     day: 'Day Two',
+    numeral: 'II',
     date: 'Saturday, November 20, 2027',
     label: 'The Wedding Ceremony & Reception',
     tagline: 'The day we have been dreaming of — join us as we say "I do."',
@@ -44,34 +46,38 @@ const days = [
   />
 
   <!-- Day cards -->
-  <section class="py-20 px-6 max-w-5xl mx-auto space-y-20">
+  <section class="py-24 px-6 max-w-5xl mx-auto space-y-24">
     {days.map((d, idx) => (
-      <div class="grid md:grid-cols-[1fr_2fr] gap-10 items-start">
+      <div class:list={['grid gap-12 items-start', idx % 2 !== 0 ? 'md:grid-cols-[2fr_1fr]' : 'md:grid-cols-[1fr_2fr]']} data-reveal>
 
         <!-- Label side -->
         <div class:list={['md:text-right', idx % 2 !== 0 ? 'md:order-last md:text-left' : '']}>
-          <p class="font-sans text-xs tracking-widest uppercase text-gold mb-2">{d.day}</p>
-          <h2 class="font-serif text-3xl text-brown-600 italic mb-2">{d.label}</h2>
-          <p class="font-sans text-xs tracking-widest uppercase text-taupe mb-3">{d.date}</p>
-          <p class="font-sans text-sm text-brown-400 leading-relaxed italic">{d.tagline}</p>
+          <p class="font-serif text-5xl text-gold/40 leading-none mb-3">{d.numeral}</p>
+          <p class="eyebrow mb-3">{d.day}</p>
+          <h2 class="font-serif font-medium text-3xl md:text-4xl text-brown-600 italic mb-3 leading-snug">{d.label}</h2>
+          <p class="font-sans font-normal text-[0.65rem] tracking-mega uppercase text-taupe mb-4">{d.date}</p>
+          <p class="font-serif text-lg italic text-brown-400 leading-relaxed">{d.tagline}</p>
         </div>
 
         <!-- Timeline -->
-        <div class="card space-y-0 p-0 overflow-hidden">
-          {d.events.map((event, i) => (
-            <div class:list={[
-              'flex items-start gap-6 px-8 py-5',
-              i < d.events.length - 1 ? 'border-b border-brown-100' : '',
-            ]}>
-              <span class="font-sans text-xs tracking-wide text-gold whitespace-nowrap pt-0.5 w-16 shrink-0">
-                {event.time}
-              </span>
-              <div>
-                <p class="font-serif text-lg text-brown-600">{event.name}</p>
-                <p class="font-sans text-xs text-taupe mt-0.5">{event.detail}</p>
+        <div class="frame-luxe !p-0 overflow-hidden">
+          <div class="relative py-4">
+            {d.events.map((event, i) => (
+              <div class:list={[
+                'relative flex items-start gap-8 px-8 md:px-12 py-6',
+                i < d.events.length - 1 ? 'border-b border-brown-100/70' : '',
+              ]}>
+                <span class="font-serif font-medium text-lg text-gold whitespace-nowrap w-24 shrink-0 text-right">
+                  {event.time}
+                </span>
+                <span class="text-gold/60 text-[0.6rem] pt-2 shrink-0">&#9670;</span>
+                <div>
+                  <p class="font-serif font-medium text-2xl text-brown-600 leading-tight">{event.name}</p>
+                  <p class="font-sans font-light text-sm text-taupe mt-1">{event.detail}</p>
+                </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
 
       </div>
@@ -79,23 +85,29 @@ const days = [
   </section>
 
   <!-- Dress code note -->
-  <section class="py-16 bg-blush/30 text-center px-6">
-    <h2 class="font-serif text-2xl text-brown-600 mb-4">Attire</h2>
-    <div class="section-divider"></div>
-    <p class="font-sans text-sm text-brown-500 max-w-lg mx-auto leading-relaxed">
-      We invite our guests to dress in <strong class="font-medium">cocktail or formal attire</strong>.
-      Our palette is neutrals, creams, and warm earth tones — we welcome you to complement it,
-      though truly any colour that makes you feel beautiful is welcome.
-      Please leave white and ivory for the bride.
-    </p>
+  <section class="py-20 bg-cream text-center px-6 relative">
+    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-2/3 max-w-xl h-px bg-gradient-to-r from-transparent via-gold/40 to-transparent"></div>
+    <div data-reveal>
+      <p class="eyebrow mb-4">What to wear</p>
+      <h2 class="font-serif font-medium text-4xl text-brown-600 mb-2">Attire</h2>
+      <div class="section-divider"><span class="gem"></span></div>
+      <p class="font-serif text-xl italic text-brown-500 max-w-xl mx-auto leading-relaxed mb-4">
+        We invite our guests to dress in cocktail or formal attire.
+      </p>
+      <p class="font-sans font-light text-sm text-brown-400 max-w-lg mx-auto leading-relaxed">
+        Our palette is neutrals, creams, and warm earth tones — we welcome you to complement it,
+        though truly any colour that makes you feel beautiful is welcome.
+        Please leave white and ivory for the bride.
+      </p>
+    </div>
   </section>
 
   <!-- CTA -->
-  <section class="py-16 text-center px-6">
-    <p class="font-serif text-2xl italic text-brown-500 mb-6">
+  <section class="py-24 text-center px-6" data-reveal>
+    <p class="font-serif text-3xl md:text-4xl italic text-brown-500 mb-10">
       Will you be joining us?
     </p>
-    <a href="/rsvp" class="btn-primary">RSVP Here</a>
+    <a href="/rsvp" class="btn-primary">Kindly Reply</a>
   </section>
 
 </Layout>

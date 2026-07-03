@@ -7,11 +7,11 @@ const supabaseUrl  = import.meta.env.PUBLIC_SUPABASE_URL  ?? '';
 const supabaseKey  = import.meta.env.PUBLIC_SUPABASE_ANON_KEY ?? '';
 ---
 
-<form id="rsvp-form" novalidate class="space-y-8">
+<form id="rsvp-form" novalidate class="space-y-10">
 
   <!-- Name search -->
   <div>
-    <label for="guest-search" class="block font-sans text-xs tracking-widest uppercase text-taupe mb-2">
+    <label for="guest-search" class="block font-sans font-normal text-[0.65rem] tracking-mega uppercase text-taupe mb-3">
       Find Your Invitation <span class="text-gold">*</span>
     </label>
 
@@ -25,58 +25,58 @@ const supabaseKey  = import.meta.env.PUBLIC_SUPABASE_ANON_KEY ?? '';
         aria-controls="guest-list"
         aria-autocomplete="list"
         placeholder="Start typing your name…"
-        class="w-full border border-brown-200 bg-ivory px-4 py-3 font-sans text-sm text-brown-600 placeholder-brown-200 focus:outline-none focus:border-brown-400 transition-colors"
+        class="input-luxe"
       />
 
       <ul
         id="guest-list"
         role="listbox"
-        class="hidden absolute z-20 mt-1 w-full max-h-64 overflow-auto bg-ivory border border-brown-200 shadow-lg"
+        class="hidden absolute z-20 mt-2 w-full max-h-64 overflow-auto bg-ivory border border-gold/30 shadow-[0_24px_60px_-24px_rgba(42,27,16,0.35)]"
       >
         {parties.map((p, i) => (
           <li
             role="option"
             data-idx={i}
             data-search={(p.label + ' ' + p.members.join(' ')).toLowerCase()}
-            class="guest-option px-4 py-2.5 font-sans text-sm text-brown-600 cursor-pointer hover:bg-brown-100 aria-selected:bg-brown-100"
+            class="guest-option px-5 py-3 font-serif text-lg text-brown-600 cursor-pointer border-b border-brown-100/50 last:border-b-0 transition-colors hover:bg-cream aria-selected:bg-cream"
           >
             {p.label}
           </li>
         ))}
-        <li id="guest-empty" class="hidden px-4 py-2.5 font-sans text-sm text-taupe italic">
+        <li id="guest-empty" class="hidden px-5 py-3 font-serif text-lg italic text-taupe">
           No matching name found.
         </li>
       </ul>
     </div>
 
-    <p class="font-sans text-xs text-taupe mt-1">
+    <p class="font-sans font-light text-xs text-taupe mt-3">
       Search by any name on your invitation. Can't find it?
-      <a href="mailto:bmaloy19@gmail.com" class="underline hover:text-brown-500 transition-colors">Let us know</a>.
+      <a href="mailto:bmaloy19@gmail.com" class="underline underline-offset-4 decoration-gold/40 hover:text-brown-500 transition-colors">Let us know</a>.
     </p>
   </div>
 
   <!-- Attendance (revealed & built once an invitation is chosen) -->
-  <div id="attendance" class="hidden space-y-4">
+  <div id="attendance" class="hidden space-y-5">
     <div>
-      <p class="font-sans text-xs tracking-widest uppercase text-taupe mb-1">
+      <p class="font-sans font-normal text-[0.65rem] tracking-mega uppercase text-taupe mb-2">
         Attendance <span class="text-gold">*</span>
       </p>
-      <p class="font-sans text-xs text-taupe">
-        Check the days each guest will attend. Leave both unchecked for anyone who sadly can't make it.
+      <p class="font-sans font-light text-xs text-taupe leading-relaxed">
+        Select the days each guest will attend. Leave both unselected for anyone who sadly can't make it.
       </p>
     </div>
-    <div id="party-members" class="space-y-3"></div>
+    <div id="party-members" class="space-y-4"></div>
   </div>
 
   <!-- Error message -->
-  <p id="form-error" class="hidden font-sans text-sm text-red-500"></p>
+  <p id="form-error" class="hidden font-sans text-sm text-red-500 text-center"></p>
 
   <!-- Submit -->
   <div id="submit-wrap" class="hidden text-center pt-2">
     <button
       type="submit"
       id="submit-btn"
-      class="btn-primary min-w-[200px]"
+      class="btn-primary min-w-[220px]"
     >
       Send My RSVP
     </button>
@@ -85,16 +85,17 @@ const supabaseKey  = import.meta.env.PUBLIC_SUPABASE_ANON_KEY ?? '';
 </form>
 
 <!-- Success state -->
-<div id="rsvp-success" class="hidden text-center py-12">
-  <div class="flex items-center justify-center gap-4 mb-6">
-    <div class="w-12 h-px bg-gold opacity-60"></div>
+<div id="rsvp-success" class="hidden text-center py-10">
+  <div class="flex items-center justify-center gap-4 mb-8">
+    <div class="h-px w-16 bg-gradient-to-r from-transparent to-gold/70"></div>
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6 text-gold">
       <path d="M11.645 20.91l-.007-.003-.022-.012a15.247 15.247 0 01-.383-.218 25.18 25.18 0 01-4.244-3.17C4.688 15.36 2.25 12.174 2.25 8.25 2.25 5.322 4.714 3 7.688 3A5.5 5.5 0 0112 5.052 5.5 5.5 0 0116.313 3c2.973 0 5.437 2.322 5.437 5.25 0 3.925-2.438 7.111-4.739 9.256a25.175 25.175 0 01-4.244 3.17 15.247 15.247 0 01-.383.219l-.022.012-.007.004-.003.001a.752.752 0 01-.704 0l-.003-.001z" />
     </svg>
-    <div class="w-12 h-px bg-gold opacity-60"></div>
+    <div class="h-px w-16 bg-gradient-to-l from-transparent to-gold/70"></div>
   </div>
-  <h2 class="font-serif text-3xl text-brown-600 italic mb-4">Thank You!</h2>
-  <p class="font-sans text-base text-taupe max-w-md mx-auto leading-relaxed">
+  <p class="eyebrow mb-4">With all our love</p>
+  <h2 class="font-serif font-medium text-4xl text-brown-600 italic mb-5">Thank You</h2>
+  <p class="font-sans font-light text-base text-taupe max-w-md mx-auto leading-relaxed">
     Your RSVP has been received. We are so grateful — and we simply cannot wait
     to celebrate with you.
   </p>
@@ -175,33 +176,34 @@ const supabaseKey  = import.meta.env.PUBLIC_SUPABASE_ANON_KEY ?? '';
 
   function makeRow(name, isPlusOne) {
     const row = document.createElement('div');
-    row.className = 'attend-row border border-brown-100 bg-white p-4';
+    row.className = 'attend-row border border-gold/30 bg-white/70 p-6';
     row.dataset.plusone = isPlusOne ? 'true' : 'false';
 
     if (isPlusOne) {
       const input = document.createElement('input');
       input.type = 'text';
-      input.className = 'plusone-name w-full border border-brown-200 bg-ivory px-3 py-2 font-sans text-sm text-brown-600 placeholder-brown-200 focus:outline-none focus:border-brown-400 transition-colors';
+      input.className = 'plusone-name input-luxe';
       input.placeholder = 'Additional guest — name (optional)';
       row.appendChild(input);
     } else {
       const p = document.createElement('p');
-      p.className = 'attend-name font-serif text-lg text-brown-600';
+      p.className = 'attend-name font-serif font-medium text-2xl text-brown-600';
       p.textContent = name;
       row.appendChild(p);
     }
 
+    // Day selection — hidden checkboxes styled as elegant pill toggles
     const days = document.createElement('div');
-    days.className = 'flex flex-wrap gap-6 mt-3';
+    days.className = 'flex flex-wrap gap-3 mt-4';
     [['1', 'Friday, Nov 19'], ['2', 'Saturday, Nov 20']].forEach(([d, lbl]) => {
       const label = document.createElement('label');
-      label.className = 'flex items-center gap-2 cursor-pointer';
+      label.className = 'cursor-pointer';
       const cb = document.createElement('input');
       cb.type = 'checkbox';
-      cb.className = 'attend-day accent-brown-500';
+      cb.className = 'attend-day peer sr-only';
       cb.dataset.day = d;
       const span = document.createElement('span');
-      span.className = 'font-sans text-sm text-brown-600';
+      span.className = 'inline-block border border-brown-200 px-5 py-2.5 font-sans font-normal text-[0.65rem] tracking-widest uppercase text-taupe transition-all duration-300 ease-luxe hover:border-gold hover:text-brown-600 peer-checked:bg-brown-700 peer-checked:border-brown-700 peer-checked:text-champagne peer-focus-visible:ring-1 peer-focus-visible:ring-gold';
       span.textContent = lbl;
       label.append(cb, span);
       days.appendChild(label);
@@ -210,7 +212,7 @@ const supabaseKey  = import.meta.env.PUBLIC_SUPABASE_ANON_KEY ?? '';
 
     const diet = document.createElement('input');
     diet.type = 'text';
-    diet.className = 'attend-diet w-full border border-brown-200 bg-ivory px-3 py-2 mt-3 font-sans text-sm text-brown-600 placeholder-brown-200 focus:outline-none focus:border-brown-400 transition-colors';
+    diet.className = 'attend-diet input-luxe mt-4 !text-sm';
     diet.placeholder = 'Dietary restrictions or allergies (optional)';
     row.appendChild(diet);
 
@@ -269,7 +271,7 @@ const supabaseKey  = import.meta.env.PUBLIC_SUPABASE_ANON_KEY ?? '';
         name = row.querySelector('.plusone-name').value.trim();
         if (!name) {
           if (day1 || day2) {
-            showError('Please enter a name for the additional guest, or uncheck their days.');
+            showError('Please enter a name for the additional guest, or unselect their days.');
             return;
           }
           continue; // empty plus-one slot — skip it
