@@ -71,28 +71,6 @@ const quickLinks = [
     </div>
   </section>
 
-  <!-- Countdown -->
-  <section class="bg-ink text-center py-16 px-6 relative overflow-hidden">
-    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-2/3 max-w-xl h-px bg-gradient-to-r from-transparent via-gold/50 to-transparent"></div>
-    <p class="eyebrow text-gold/80 mb-8">Until we say "I do"</p>
-    <div id="countdown" class="flex items-start justify-center gap-8 md:gap-16">
-      {[
-        ['cd-days',    'Days'],
-        ['cd-hours',   'Hours'],
-        ['cd-minutes', 'Minutes'],
-        ['cd-seconds', 'Seconds'],
-      ].map(([id, label], i) => (
-        <>
-          {i > 0 && <span class="font-serif text-3xl md:text-4xl text-gold/40 pt-2 md:pt-3">&middot;</span>}
-          <div class="min-w-[3.5rem] md:min-w-[5rem]">
-            <p id={id} class="font-serif font-medium text-4xl md:text-6xl text-champagne tabular-nums">&nbsp;</p>
-            <p class="font-sans font-normal text-[0.6rem] tracking-mega uppercase text-taupe mt-2">{label}</p>
-          </div>
-        </>
-      ))}
-    </div>
-  </section>
-
   <!-- Quote section -->
   <section class="py-28 px-6 text-center max-w-3xl mx-auto" data-reveal>
     <p class="font-serif text-6xl text-gold/50 leading-none mb-2" aria-hidden="true">&ldquo;</p>
@@ -122,30 +100,5 @@ const quickLinks = [
       ))}
     </div>
   </section>
-
-  <script>
-    // Elegant countdown to the ceremony
-    const target = new Date('2027-11-19T16:30:00-06:00').getTime();
-    const els = {
-      days:    document.getElementById('cd-days'),
-      hours:   document.getElementById('cd-hours'),
-      minutes: document.getElementById('cd-minutes'),
-      seconds: document.getElementById('cd-seconds'),
-    };
-    const pad = (n: number) => String(n).padStart(2, '0');
-    const tick = () => {
-      const diff = Math.max(0, target - Date.now());
-      const d = Math.floor(diff / 86400000);
-      const h = Math.floor(diff / 3600000) % 24;
-      const m = Math.floor(diff / 60000) % 60;
-      const s = Math.floor(diff / 1000) % 60;
-      if (els.days)    els.days.textContent    = String(d);
-      if (els.hours)   els.hours.textContent   = pad(h);
-      if (els.minutes) els.minutes.textContent = pad(m);
-      if (els.seconds) els.seconds.textContent = pad(s);
-    };
-    tick();
-    setInterval(tick, 1000);
-  </script>
 
 </Layout>
