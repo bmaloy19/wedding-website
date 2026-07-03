@@ -1,0 +1,34 @@
+---
+import Layout from '../layouts/Layout.astro';
+import RSVPForm from '../components/RSVPForm.astro';
+import PageHero from '../components/PageHero.astro';
+---
+
+<Layout
+  title="RSVP — Kacey & Bryce"
+  description="Kindly reply to our wedding invitation by October 1, 2027."
+>
+
+  <!-- Hero -->
+  <PageHero
+    eyebrow="Kindly reply by October 1, 2027"
+    title="RSVP"
+    subtitle="We would be so honoured to have you join us. Please let us know if you are able to attend — it means the world."
+    poster="https://picsum.photos/seed/maloy-rsvp/1920/1080?grayscale"
+  />
+
+  <!-- Form -->
+  <section class="py-20 px-6 max-w-2xl mx-auto">
+    <RSVPForm />
+  </section>
+
+  <!-- Note -->
+  <section class="pb-20 px-6 max-w-xl mx-auto text-center">
+    <p class="font-sans text-xs text-taupe leading-relaxed">
+      If you have any trouble submitting, please reach out directly at
+      <a href="mailto:bmaloy19@gmail.com" class="underline hover:text-brown-500 transition-colors">bmaloy19@gmail.com</a>.
+      We will be happy to note your response personally.
+    </p>
+  </section>
+
+</Layout>

@@ -1,0 +1,45 @@
+---
+// Reusable full-cover background media: a looping video with an always-present
+// poster image fallback and a gradient overlay for legible text on top.
+//
+// Drop your own footage into /public/videos and point `video` at it
+// (e.g. video="/videos/hero.mp4") to replace the placeholder clips.
+interface Props {
+  video?: string | string[];      // one or more video URLs (first that loads wins)
+  poster: string;                 // always-visible image (also the fallback)
+  overlay?: string;               // tailwind gradient/colour classes for the scrim
+  class?: string;                 // extra classes on the wrapper
+}
+
+const {
+  video,
+  poster,
+  overlay = 'bg-gradient-to-b from-brown-700/50 via-brown-700/30 to-brown-700/60',
+  class: extra = '',
+} = Astro.props;
+
+const sources = video ? (Array.isArray(video) ? video : [video]) : [];
+---
+
+<div class:list={['absolute inset-0 overflow-hidden', extra]}>
+  {sources.length > 0 && (
+    <video
+      class="absolute inset-0 h-full w-full object-cover"
+      autoplay
+      muted
+      loop
+      playsinline
+      preload="auto"
+      poster={poster}
+    >
+      {sources.map((src) => <source src={src} type="video/mp4" />)}
+    </video>
+  )}
+
+  <!-- Poster shows beneath/until the video paints, and remains if it fails -->
+  {sources.length === 0 && (
+    <img src={poster} alt="" class="absolute inset-0 h-full w-full object-cover" />
+  )}
+
+  <div class:list={['absolute inset-0', overlay]}></div>
+</div>

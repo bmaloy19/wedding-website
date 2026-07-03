@@ -1,0 +1,101 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PageHero from '../components/PageHero.astro';
+
+const days = [
+  {
+    day: 'Day One',
+    date: 'Friday, November 19, 2027',
+    label: 'The Rehearsal & Welcome Dinner',
+    tagline: 'An intimate evening to welcome our dearest family and friends.',
+    events: [
+      { time: '5:00 PM', name: 'Rehearsal', detail: '[Ceremony Venue], Des Moines, IA' },
+      { time: '7:00 PM', name: 'Welcome Dinner', detail: '[Dinner Venue] — dress code: cocktail attire' },
+      { time: '9:00 PM', name: 'Evening Reception', detail: 'Dancing, toasts & celebration' },
+    ],
+  },
+  {
+    day: 'Day Two',
+    date: 'Saturday, November 20, 2027',
+    label: 'The Wedding Ceremony & Reception',
+    tagline: 'The day we have been dreaming of — join us as we say "I do."',
+    events: [
+      { time: '4:00 PM', name: 'Doors Open', detail: 'Guests welcome to be seated' },
+      { time: '4:30 PM', name: 'Ceremony', detail: '[Ceremony Venue], Des Moines, IA' },
+      { time: '5:30 PM', name: 'Cocktail Hour', detail: '[Venue] — garden terrace' },
+      { time: '7:00 PM', name: 'Dinner & Reception', detail: '[Reception Venue]' },
+      { time: '11:00 PM', name: 'Send-off', detail: 'Farewell & sparkler exit' },
+    ],
+  },
+];
+---
+
+<Layout
+  title="Wedding Details — Kacey & Bryce"
+  description="All the details for our two-day celebration in Des Moines, Iowa."
+>
+
+  <!-- Hero -->
+  <PageHero
+    eyebrow="Mark your calendars"
+    title="The Celebration"
+    subtitle="Two days of joy, surrounded by the people who mean everything to us."
+    poster="https://picsum.photos/seed/maloy-celebration/1920/1080?grayscale"
+  />
+
+  <!-- Day cards -->
+  <section class="py-20 px-6 max-w-5xl mx-auto space-y-20">
+    {days.map((d, idx) => (
+      <div class="grid md:grid-cols-[1fr_2fr] gap-10 items-start">
+
+        <!-- Label side -->
+        <div class:list={['md:text-right', idx % 2 !== 0 ? 'md:order-last md:text-left' : '']}>
+          <p class="font-sans text-xs tracking-widest uppercase text-gold mb-2">{d.day}</p>
+          <h2 class="font-serif text-3xl text-brown-600 italic mb-2">{d.label}</h2>
+          <p class="font-sans text-xs tracking-widest uppercase text-taupe mb-3">{d.date}</p>
+          <p class="font-sans text-sm text-brown-400 leading-relaxed italic">{d.tagline}</p>
+        </div>
+
+        <!-- Timeline -->
+        <div class="card space-y-0 p-0 overflow-hidden">
+          {d.events.map((event, i) => (
+            <div class:list={[
+              'flex items-start gap-6 px-8 py-5',
+              i < d.events.length - 1 ? 'border-b border-brown-100' : '',
+            ]}>
+              <span class="font-sans text-xs tracking-wide text-gold whitespace-nowrap pt-0.5 w-16 shrink-0">
+                {event.time}
+              </span>
+              <div>
+                <p class="font-serif text-lg text-brown-600">{event.name}</p>
+                <p class="font-sans text-xs text-taupe mt-0.5">{event.detail}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+
+      </div>
+    ))}
+  </section>
+
+  <!-- Dress code note -->
+  <section class="py-16 bg-blush/30 text-center px-6">
+    <h2 class="font-serif text-2xl text-brown-600 mb-4">Attire</h2>
+    <div class="section-divider"></div>
+    <p class="font-sans text-sm text-brown-500 max-w-lg mx-auto leading-relaxed">
+      We invite our guests to dress in <strong class="font-medium">cocktail or formal attire</strong>.
+      Our palette is neutrals, creams, and warm earth tones — we welcome you to complement it,
+      though truly any colour that makes you feel beautiful is welcome.
+      Please leave white and ivory for the bride.
+    </p>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-16 text-center px-6">
+    <p class="font-serif text-2xl italic text-brown-500 mb-6">
+      Will you be joining us?
+    </p>
+    <a href="/rsvp" class="btn-primary">RSVP Here</a>
+  </section>
+
+</Layout>

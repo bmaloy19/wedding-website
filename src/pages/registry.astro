@@ -1,0 +1,76 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PageHero from '../components/PageHero.astro';
+
+const registries = [
+  {
+    name: '[Registry Name]',
+    description: 'Home, kitchen, and everyday living.',
+    link: '#',
+    linkText: 'View Registry',
+  },
+  {
+    name: '[Registry Name 2]',
+    description: 'For adventures and experiences together.',
+    link: '#',
+    linkText: 'View Registry',
+  },
+  {
+    name: 'Honeymoon Fund',
+    description: 'Help us celebrate our first adventure as husband and wife.',
+    link: '#',
+    linkText: 'Contribute',
+  },
+];
+---
+
+<Layout
+  title="Registry — Kacey & Bryce"
+  description="Wedding registry information for Bryce and Kacey."
+>
+
+  <!-- Hero -->
+  <PageHero
+    eyebrow="With gratitude"
+    title="Registry"
+    subtitle="Your presence is the greatest gift — but for those who have asked."
+    poster="https://picsum.photos/seed/maloy-registry/1920/1080?grayscale"
+  />
+
+  <!-- Heartfelt note -->
+  <section class="py-16 px-6 max-w-2xl mx-auto text-center">
+    <p class="font-serif text-2xl italic text-brown-500 mb-6">
+      "Your presence at our wedding is the greatest gift we could ever ask for."
+    </p>
+    <p class="font-sans text-base text-brown-400 leading-relaxed">
+      For those who have asked, we have created a small registry of things
+      that will bring warmth and beauty to our home as we begin this new chapter together.
+      Any contribution, however small, is received with the deepest gratitude
+      and the fullest hearts.
+    </p>
+  </section>
+
+  <!-- Registry cards -->
+  <section class="pb-24 px-6 max-w-4xl mx-auto">
+    <div class="grid md:grid-cols-3 gap-6">
+      {registries.map(r => (
+        <div class="card text-center flex flex-col justify-between">
+          <div>
+            <h3 class="font-serif text-2xl text-brown-600 mb-3">{r.name}</h3>
+            <p class="font-sans text-sm text-taupe leading-relaxed mb-6">{r.description}</p>
+          </div>
+          <a href={r.link} class="btn-outline">{r.linkText}</a>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- Closing sentiment -->
+  <section class="py-16 bg-parchment text-center px-6">
+    <p class="font-serif text-lg italic text-brown-400 max-w-xl mx-auto">
+      We are simply overjoyed that you will be with us to celebrate.
+      Thank you, from the bottom of our hearts.
+    </p>
+  </section>
+
+</Layout>

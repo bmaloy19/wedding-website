@@ -1,0 +1,84 @@
+---
+import Layout from '../layouts/Layout.astro';
+import BgMedia from '../components/BgMedia.astro';
+
+// Placeholder footage + imagery — swap the video for your own film in /public/videos
+const heroVideo = [
+  'https://videos.pexels.com/video-files/4763824/4763824-uhd_2560_1440_24fps.mp4',
+  'https://videos.pexels.com/video-files/7578552/7578552-uhd_2560_1440_30fps.mp4',
+];
+// Solid dark-brown poster so there's no random image flash before the video loads
+const heroPoster = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1' height='1'%3E%3Crect fill='%233D2415'/%3E%3C/svg%3E";
+---
+
+<Layout title="Kacey & Bryce — November 19, 2027">
+
+  <!-- Hero -->
+  <section class="hero-overlay-media relative min-h-screen -mt-[73px] flex flex-col items-center justify-center text-center overflow-hidden px-6">
+
+    <BgMedia
+      video={heroVideo}
+      poster={heroPoster}
+      overlay="bg-gradient-to-b from-brown-700/60 via-brown-700/35 to-brown-700/70"
+    />
+
+    <!-- Decorative corner flourishes -->
+    <div class="absolute top-8 left-8 w-20 h-20 border-t border-l border-champagne/50 z-10"></div>
+    <div class="absolute top-8 right-8 w-20 h-20 border-t border-r border-champagne/50 z-10"></div>
+    <div class="absolute bottom-8 left-8 w-20 h-20 border-b border-l border-champagne/50 z-10"></div>
+    <div class="absolute bottom-8 right-8 w-20 h-20 border-b border-r border-champagne/50 z-10"></div>
+
+    <div class="relative z-10 flex flex-col items-center">
+      <h1 class="font-script text-7xl md:text-9xl text-cream leading-none mb-4 text-shadow-elegant animate-fade-up">
+        Kacey &amp; Bryce
+      </h1>
+
+      <div class="flex items-center gap-4 my-6 animate-fade-up" style="animation-delay:0.2s">
+        <div class="w-16 h-px bg-gold"></div>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4 text-gold">
+          <path d="M11.645 20.91l-.007-.003-.022-.012a15.247 15.247 0 01-.383-.218 25.18 25.18 0 01-4.244-3.17C4.688 15.36 2.25 12.174 2.25 8.25 2.25 5.322 4.714 3 7.688 3A5.5 5.5 0 0112 5.052 5.5 5.5 0 0116.313 3c2.973 0 5.437 2.322 5.437 5.25 0 3.925-2.438 7.111-4.739 9.256a25.175 25.175 0 01-4.244 3.17 15.247 15.247 0 01-.383.219l-.022.012-.007.004-.003.001a.752.752 0 01-.704 0l-.003-.001z" />
+        </svg>
+        <div class="w-16 h-px bg-gold"></div>
+      </div>
+
+      <p class="font-serif text-2xl md:text-3xl text-cream italic mb-2 text-shadow-elegant animate-fade-up" style="animation-delay:0.3s">
+        November 19, 2027
+      </p>
+      <p class="font-sans text-xs tracking-widest uppercase text-champagne/90 mb-10 animate-fade-up" style="animation-delay:0.4s">
+        Des Moines, Iowa
+      </p>
+    </div>
+
+    <!-- Scroll cue -->
+    <div class="absolute bottom-6 left-1/2 -translate-x-1/2 z-10 animate-fade-in" style="animation-delay:1.2s">
+      <span class="block w-px h-10 bg-champagne/50 mx-auto"></span>
+    </div>
+  </section>
+
+  <!-- Quote section -->
+  <section class="py-24 px-6 text-center max-w-3xl mx-auto">
+    <p class="font-serif text-2xl md:text-3xl italic text-brown-500 leading-relaxed mb-6">
+      "Whatever our souls are made of, his and hers are the same."
+    </p>
+    <p class="font-sans text-xs tracking-widest uppercase text-taupe">— Emily Brontë</p>
+  </section>
+
+  <!-- Quick links -->
+  <section class="pb-24 px-6">
+    <div class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6">
+      {[
+        { href: '/details',  icon: '🕊', title: 'The Celebration', desc: 'Two evenings of love, laughter, and lasting memories.' },
+        { href: '/travel',   icon: '✈︎',  title: 'Getting Here',  desc: 'Everything you need to find your way to Des Moines.' },
+        { href: '/registry', icon: '🎁',  title: 'Registry',      desc: 'Your presence is our greatest gift — but if you wish…' },
+      ].map(card => (
+        <a href={card.href} class="card group text-center hover:shadow-md transition-shadow duration-300">
+          <p class="text-3xl mb-4">{card.icon}</p>
+          <h3 class="font-serif text-xl text-brown-600 mb-2 group-hover:text-brown-500 transition-colors">{card.title}</h3>
+          <p class="font-sans text-sm text-taupe leading-relaxed">{card.desc}</p>
+        </a>
+      ))}
+    </div>
+  </section>
+
+</Layout>
+

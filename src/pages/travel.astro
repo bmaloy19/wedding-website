@@ -1,0 +1,134 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PageHero from '../components/PageHero.astro';
+
+const hotels = [
+  {
+    name: '[Hotel Name]',
+    note: 'Preferred — Room Block Available',
+    address: '[Address], Des Moines, IA',
+    phone: '[Phone]',
+    code: 'MALOY2027',
+    deadline: 'October 19, 2027',
+    link: '#',
+  },
+  {
+    name: '[Hotel Name 2]',
+    note: 'Nearby Option',
+    address: '[Address], Des Moines, IA',
+    phone: '[Phone]',
+    code: null,
+    deadline: null,
+    link: '#',
+  },
+];
+---
+
+<Layout
+  title="Travel & Stay — Kacey & Bryce"
+  description="Travel information and hotel recommendations for our wedding in Des Moines, Iowa."
+>
+
+  <!-- Hero -->
+  <PageHero
+    eyebrow="We can't wait to welcome you"
+    title="Travel & Stay"
+    subtitle="Des Moines is a warm and welcoming city — and we have done our best to make your journey here as effortless as possible."
+    poster="https://picsum.photos/seed/maloy-travel/1920/1080?grayscale"
+  />
+
+  <!-- Getting here -->
+  <section class="py-20 px-6 max-w-5xl mx-auto">
+    <h2 class="section-title">Getting Here</h2>
+    <div class="section-divider"></div>
+
+    <div class="grid md:grid-cols-3 gap-6">
+
+      <div class="card text-center">
+        <p class="text-3xl mb-4">✈︎</p>
+        <h3 class="font-serif text-xl text-brown-600 mb-2">By Air</h3>
+        <p class="font-sans text-sm text-taupe leading-relaxed">
+          Fly into <strong class="text-brown-500">Des Moines International Airport (DSM)</strong>,
+          approximately 20 minutes from the venue.
+          Major airlines serve DSM with connections from most U.S. hubs.
+        </p>
+      </div>
+
+      <div class="card text-center">
+        <p class="text-3xl mb-4">🚗</p>
+        <h3 class="font-serif text-xl text-brown-600 mb-2">By Car</h3>
+        <p class="font-sans text-sm text-taupe leading-relaxed">
+          Des Moines sits at the intersection of I-80 and I-35,
+          making it easily accessible from across the Midwest.
+          Ample parking will be available at the venue — details to follow.
+        </p>
+      </div>
+
+      <div class="card text-center">
+        <p class="text-3xl mb-4">🚕</p>
+        <h3 class="font-serif text-xl text-brown-600 mb-2">Rideshare</h3>
+        <p class="font-sans text-sm text-taupe leading-relaxed">
+          Uber and Lyft are both available in Des Moines and are a
+          wonderful option for getting to and from events — especially
+          on the evening of the reception.
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Hotel blocks -->
+  <section class="pb-20 px-6 max-w-5xl mx-auto">
+    <h2 class="section-title">Where to Stay</h2>
+    <div class="section-divider"></div>
+    <p class="font-serif text-lg italic text-brown-400 text-center max-w-xl mx-auto mb-12">
+      We have reserved room blocks at the hotels below for our guests.
+      We recommend booking early — rooms are limited.
+    </p>
+
+    <div class="grid md:grid-cols-2 gap-6">
+      {hotels.map(hotel => (
+        <div class="card">
+          <p class="font-sans text-xs tracking-widest uppercase text-gold mb-1">{hotel.note}</p>
+          <h3 class="font-serif text-2xl text-brown-600 mb-1">{hotel.name}</h3>
+          <p class="font-sans text-sm text-taupe mb-4">{hotel.address}</p>
+
+          {hotel.code && (
+            <div class="bg-cream border border-brown-100 px-4 py-3 mb-4">
+              <p class="font-sans text-xs text-taupe uppercase tracking-widest">Group code</p>
+              <p class="font-serif text-lg text-brown-600">{hotel.code}</p>
+              <p class="font-sans text-xs text-taupe mt-1">Book by {hotel.deadline}</p>
+            </div>
+          )}
+
+          <a href={hotel.link} class="btn-outline text-center block">Reserve a Room</a>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- Things to do -->
+  <section class="py-16 bg-parchment px-6 text-center">
+    <h2 class="section-title">While You're in Des Moines</h2>
+    <div class="section-divider"></div>
+    <p class="font-sans text-sm text-brown-500 max-w-2xl mx-auto leading-relaxed mb-10">
+      We hope you will make a weekend of it. Des Moines has wonderful restaurants,
+      art galleries, and the beautiful Principal Riverwalk — perfect for a crisp
+      November stroll with a warm coffee in hand.
+    </p>
+    <div class="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto text-left">
+      {[
+        { name: 'Pappajohn Sculpture Park',  type: 'Art & Culture',   desc: 'A stunning outdoor gallery in the heart of downtown.'       },
+        { name: 'East Village',               type: 'Food & Drink',    desc: 'Charming boutiques, cafés, and acclaimed restaurants.'      },
+        { name: 'Iowa State Capitol',         type: 'Landmark',        desc: 'One of the most beautiful capitol buildings in the country.' },
+      ].map(item => (
+        <div class="card">
+          <p class="font-sans text-xs tracking-widest uppercase text-gold mb-1">{item.type}</p>
+          <h3 class="font-serif text-lg text-brown-600 mb-1">{item.name}</h3>
+          <p class="font-sans text-sm text-taupe leading-relaxed">{item.desc}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+</Layout>

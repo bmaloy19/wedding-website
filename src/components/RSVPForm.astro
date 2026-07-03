@@ -1,0 +1,193 @@
+---
+// RSVPForm.astro — client-side island
+// Reads SUPABASE_URL and SUPABASE_ANON_KEY from runtime env vars (injected at build time)
+const supabaseUrl  = import.meta.env.PUBLIC_SUPABASE_URL  ?? '';
+const supabaseKey  = import.meta.env.PUBLIC_SUPABASE_ANON_KEY ?? '';
+---
+
+<form id="rsvp-form" novalidate class="space-y-8">
+
+  <!-- Name -->
+  <div>
+    <label for="name" class="block font-sans text-xs tracking-widest uppercase text-taupe mb-2">
+      Full Name <span class="text-gold">*</span>
+    </label>
+    <input
+      type="text"
+      id="name"
+      name="name"
+      required
+      placeholder="Your full name"
+      class="w-full border border-brown-200 bg-ivory px-4 py-3 font-sans text-sm text-brown-600 placeholder-brown-200 focus:outline-none focus:border-brown-400 transition-colors"
+    />
+  </div>
+
+  <!-- Email -->
+  <div>
+    <label for="email" class="block font-sans text-xs tracking-widest uppercase text-taupe mb-2">
+      Email Address
+    </label>
+    <input
+      type="email"
+      id="email"
+      name="email"
+      placeholder="your@email.com"
+      class="w-full border border-brown-200 bg-ivory px-4 py-3 font-sans text-sm text-brown-600 placeholder-brown-200 focus:outline-none focus:border-brown-400 transition-colors"
+    />
+    <p class="font-sans text-xs text-taupe mt-1">So we can send you any updates about the weekend.</p>
+  </div>
+
+  <!-- Attendance -->
+  <fieldset class="space-y-4">
+    <legend class="font-sans text-xs tracking-widest uppercase text-taupe mb-4 block">
+      Attendance <span class="text-gold">*</span>
+    </legend>
+
+    <!-- Day 1 -->
+    <div class="card p-6">
+      <h3 class="font-serif text-lg text-brown-600 mb-1">Friday, November 19, 2027</h3>
+      <p class="font-sans text-xs text-taupe mb-4">Rehearsal &amp; Welcome Dinner</p>
+      <div class="flex gap-6">
+        <label class="flex items-center gap-2 cursor-pointer">
+          <input type="radio" name="day1" value="yes" required class="accent-brown-500" />
+          <span class="font-sans text-sm text-brown-600">Joyfully accepts</span>
+        </label>
+        <label class="flex items-center gap-2 cursor-pointer">
+          <input type="radio" name="day1" value="no" class="accent-brown-500" />
+          <span class="font-sans text-sm text-brown-400">Regretfully declines</span>
+        </label>
+      </div>
+    </div>
+
+    <!-- Day 2 -->
+    <div class="card p-6">
+      <h3 class="font-serif text-lg text-brown-600 mb-1">Saturday, November 20, 2027</h3>
+      <p class="font-sans text-xs text-taupe mb-4">Wedding Ceremony &amp; Reception</p>
+      <div class="flex gap-6">
+        <label class="flex items-center gap-2 cursor-pointer">
+          <input type="radio" name="day2" value="yes" required class="accent-brown-500" />
+          <span class="font-sans text-sm text-brown-600">Joyfully accepts</span>
+        </label>
+        <label class="flex items-center gap-2 cursor-pointer">
+          <input type="radio" name="day2" value="no" class="accent-brown-500" />
+          <span class="font-sans text-sm text-brown-400">Regretfully declines</span>
+        </label>
+      </div>
+    </div>
+  </fieldset>
+
+  <!-- Dietary restrictions -->
+  <div>
+    <label for="dietary" class="block font-sans text-xs tracking-widest uppercase text-taupe mb-2">
+      Dietary Restrictions or Allergies
+    </label>
+    <textarea
+      id="dietary"
+      name="dietary"
+      rows="3"
+      placeholder="Please let us know of any dietary needs so we can accommodate you."
+      class="w-full border border-brown-200 bg-ivory px-4 py-3 font-sans text-sm text-brown-600 placeholder-brown-200 focus:outline-none focus:border-brown-400 transition-colors resize-none"
+    ></textarea>
+  </div>
+
+  <!-- Error message -->
+  <p id="form-error" class="hidden font-sans text-sm text-red-500"></p>
+
+  <!-- Submit -->
+  <div class="text-center pt-2">
+    <button
+      type="submit"
+      id="submit-btn"
+      class="btn-primary min-w-[200px]"
+    >
+      Send My RSVP
+    </button>
+  </div>
+
+</form>
+
+<!-- Success state -->
+<div id="rsvp-success" class="hidden text-center py-12">
+  <div class="flex items-center justify-center gap-4 mb-6">
+    <div class="w-12 h-px bg-gold opacity-60"></div>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6 text-gold">
+      <path d="M11.645 20.91l-.007-.003-.022-.012a15.247 15.247 0 01-.383-.218 25.18 25.18 0 01-4.244-3.17C4.688 15.36 2.25 12.174 2.25 8.25 2.25 5.322 4.714 3 7.688 3A5.5 5.5 0 0112 5.052 5.5 5.5 0 0116.313 3c2.973 0 5.437 2.322 5.437 5.25 0 3.925-2.438 7.111-4.739 9.256a25.175 25.175 0 01-4.244 3.17 15.247 15.247 0 01-.383.219l-.022.012-.007.004-.003.001a.752.752 0 01-.704 0l-.003-.001z" />
+    </svg>
+    <div class="w-12 h-px bg-gold opacity-60"></div>
+  </div>
+  <h2 class="font-serif text-3xl text-brown-600 italic mb-4">Thank You!</h2>
+  <p class="font-sans text-base text-taupe max-w-md mx-auto leading-relaxed">
+    Your RSVP has been received. We are so grateful — and we simply cannot wait
+    to celebrate with you.
+  </p>
+</div>
+
+<script define:vars={{ supabaseUrl, supabaseKey }}>
+  const form      = document.getElementById('rsvp-form');
+  const successEl = document.getElementById('rsvp-success');
+  const errorEl   = document.getElementById('form-error');
+  const submitBtn = document.getElementById('submit-btn');
+
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    errorEl.classList.add('hidden');
+    errorEl.textContent = '';
+    submitBtn.textContent = 'Sending…';
+    submitBtn.disabled = true;
+
+    const data = Object.fromEntries(new FormData(form));
+
+    // Basic validation
+    if (!data.name?.trim()) {
+      showError('Please enter your full name.');
+      return;
+    }
+    if (!data.day1) {
+      showError('Please let us know if you can join us on Friday.');
+      return;
+    }
+    if (!data.day2) {
+      showError('Please let us know if you can join us on Saturday.');
+      return;
+    }
+
+    // Submit to Supabase
+    try {
+      const res = await fetch(`${supabaseUrl}/rest/v1/rsvps`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'apikey': supabaseKey,
+          'Authorization': `Bearer ${supabaseKey}`,
+          'Prefer': 'return=minimal',
+        },
+        body: JSON.stringify({
+          name:     data.name.trim(),
+          email:    data.email?.trim() || null,
+          day1:     data.day1 === 'yes',
+          day2:     data.day2 === 'yes',
+          dietary:  data.dietary?.trim() || null,
+        }),
+      });
+
+      if (!res.ok) {
+        const err = await res.text();
+        throw new Error(err || `HTTP ${res.status}`);
+      }
+
+      form.classList.add('hidden');
+      successEl.classList.remove('hidden');
+
+    } catch (err) {
+      showError('Something went wrong — please try again or email us directly.');
+      console.error(err);
+    }
+  });
+
+  function showError(msg) {
+    errorEl.textContent = msg;
+    errorEl.classList.remove('hidden');
+    submitBtn.textContent = 'Send My RSVP';
+    submitBtn.disabled = false;
+  }
+</script>

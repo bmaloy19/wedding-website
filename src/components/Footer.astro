@@ -1,0 +1,33 @@
+---
+---
+
+<footer class="bg-brown-700 text-brown-200 py-12 mt-24">
+  <div class="max-w-4xl mx-auto px-6 text-center">
+
+    <p class="font-script text-4xl text-champagne mb-3">Kacey &amp; Bryce</p>
+    <p class="font-sans text-xs tracking-widest uppercase text-taupe mb-6">
+      November 19, 2027 &nbsp;·&nbsp; Des Moines, Iowa
+    </p>
+
+    <div class="w-12 h-px bg-gold opacity-40 mx-auto mb-6"></div>
+
+    <nav class="flex flex-wrap justify-center gap-6 mb-8">
+      {[
+        { href: '/',          label: 'Home'      },
+        { href: '/about',    label: 'Our Story' },
+        { href: '/details',  label: 'Details'   },
+        { href: '/travel',   label: 'Travel'    },
+        { href: '/registry', label: 'Registry'  },
+        { href: '/rsvp',     label: 'RSVP'      },
+      ].map(link => (
+        <a href={link.href} class="font-sans text-xs tracking-widest uppercase text-taupe hover:text-champagne transition-colors">
+          {link.label}
+        </a>
+      ))}
+    </nav>
+
+    <p class="font-sans text-xs text-brown-400">
+      Questions? Reach us at <a href="mailto:bmaloy19@gmail.com" class="underline hover:text-champagne transition-colors">bmaloy19@gmail.com</a>
+    </p>
+  </div>
+</footer>

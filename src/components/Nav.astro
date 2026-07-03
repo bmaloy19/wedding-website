@@ -1,0 +1,123 @@
+---
+const navLinks = [
+  { href: '/',         label: 'Home'      },
+  { href: '/about',   label: 'Our Story' },
+  { href: '/details', label: 'Details'   },
+  { href: '/travel',  label: 'Travel'    },
+  { href: '/registry',label: 'Registry'  },
+  { href: '/rsvp',    label: 'RSVP'      },
+];
+
+const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
+const isHome = currentPath === '/';
+---
+
+<header
+  id="site-nav"
+  data-home={isHome ? 'true' : 'false'}
+  class:list={[
+    'fixed top-0 left-0 right-0 z-50 transition-all duration-500',
+    isHome
+      ? 'bg-transparent border-b border-transparent'
+      : 'bg-ivory/95 backdrop-blur-sm border-b border-brown-100',
+  ]}
+>
+  <nav class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+
+    <!-- Monogram / Logo -->
+    <a href="/" id="nav-logo" class:list={[
+      'font-script text-3xl transition-colors duration-500',
+      isHome ? 'text-cream hover:text-champagne' : 'text-brown-500 hover:text-brown-600',
+    ]}>
+      The Maloy's
+    </a>
+
+    <!-- Desktop links -->
+    <ul class="hidden md:flex items-center gap-8">
+      {navLinks.map(link => (
+        <li>
+          <a
+            href={link.href}
+            data-navlink
+            class:list={[
+              'font-sans text-xs tracking-widest uppercase transition-colors duration-200',
+              currentPath === link.href ? 'is-active' : '',
+              isHome
+                ? 'text-cream/90 hover:text-champagne'
+                : (currentPath === link.href
+                    ? 'text-brown-600 border-b border-gold pb-0.5'
+                    : 'text-taupe hover:text-brown-600'),
+            ]}
+          >
+            {link.label}
+          </a>
+        </li>
+      ))}
+    </ul>
+
+    <!-- Mobile hamburger -->
+    <button
+      id="nav-toggle"
+      class:list={['md:hidden focus:outline-none transition-colors duration-500', isHome ? 'text-cream' : 'text-brown-500']}
+      aria-label="Toggle menu"
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6h16M4 12h16M4 18h16" />
+      </svg>
+    </button>
+  </nav>
+
+  <!-- Mobile menu -->
+  <div id="mobile-menu" class="hidden md:hidden border-t border-brown-100 bg-ivory">
+    <ul class="flex flex-col items-center gap-6 py-8">
+      {navLinks.map(link => (
+        <li>
+          <a
+            href={link.href}
+            class="font-sans text-xs tracking-widest uppercase text-taupe hover:text-brown-600 transition-colors"
+          >
+            {link.label}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </div>
+</header>
+
+<script>
+  const toggle = document.getElementById('nav-toggle');
+  const menu   = document.getElementById('mobile-menu');
+  toggle?.addEventListener('click', () => menu?.classList.toggle('hidden'));
+
+  // On the homepage, the nav starts transparent over the hero video and
+  // becomes solid once the guest scrolls past it.
+  const nav = document.getElementById('site-nav');
+  if (nav?.dataset.home === 'true') {
+    const logo  = document.getElementById('nav-logo');
+    const links = Array.from(document.querySelectorAll('[data-navlink]'));
+
+    const onScroll = () => {
+      const solid = window.scrollY > 40;
+      nav.classList.toggle('bg-ivory/95', solid);
+      nav.classList.toggle('backdrop-blur-sm', solid);
+      nav.classList.toggle('border-brown-100', solid);
+      nav.classList.toggle('bg-transparent', !solid);
+      nav.classList.toggle('border-transparent', !solid);
+
+      logo?.classList.toggle('text-cream', !solid);
+      logo?.classList.toggle('text-brown-500', solid);
+
+      links.forEach((l) => {
+        l.classList.toggle('text-cream/90', !solid);
+        l.classList.toggle('hover:text-champagne', !solid);
+        const active = l.classList.contains('is-active');
+        l.classList.toggle('text-brown-600', solid && active);
+        l.classList.toggle('text-taupe', solid && !active);
+        l.classList.toggle('hover:text-brown-600', solid);
+      });
+    };
+
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+  }
+</script>

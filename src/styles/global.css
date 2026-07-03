@@ -1,0 +1,93 @@
+/* Self-hosted: drop AdoraBouton.ttf (or .otf) into /public/fonts/ */
+@font-face {
+  font-family: 'Adora Bouton';
+  src: url('/fonts/AdoraBouton.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-ivory font-sans text-brown-700 antialiased;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-serif;
+  }
+}
+
+@layer utilities {
+  .text-shadow-elegant {
+    text-shadow: 0 2px 24px rgba(61, 36, 21, 0.45);
+  }
+  .tracking-mega {
+    letter-spacing: 0.4em;
+  }
+  .animate-fade-up {
+    opacity: 0;
+    transform: translateY(24px);
+    animation: fadeUp 1.2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  }
+  .animate-fade-in {
+    opacity: 0;
+    animation: fadeIn 1.6s ease forwards;
+  }
+}
+
+@keyframes fadeUp {
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeIn {
+  to { opacity: 1; }
+}
+
+@keyframes slowZoom {
+  from { transform: scale(1); }
+  to   { transform: scale(1.08); }
+}
+
+@layer components {
+  .hero-overlay-media video,
+  .hero-overlay-media img {
+    animation: slowZoom 18s ease-out forwards;
+  }
+
+  .section-title {
+    @apply font-serif text-4xl md:text-5xl text-brown-600 text-center mb-4;
+  }
+
+  .section-divider {
+    @apply flex items-center justify-center gap-4 mb-10;
+  }
+
+  .section-divider::before,
+  .section-divider::after {
+    content: '';
+    @apply block h-px w-16 bg-gold opacity-60;
+  }
+
+  .btn-primary {
+    @apply inline-block bg-brown-500 hover:bg-brown-600 text-cream font-sans text-sm tracking-widest uppercase px-8 py-3 transition-colors duration-300;
+  }
+
+  .btn-gold {
+    @apply inline-block bg-gold/90 hover:bg-gold text-brown-700 font-sans text-sm tracking-widest uppercase px-10 py-4 transition-all duration-300 shadow-lg hover:shadow-xl;
+  }
+
+  .btn-outline {
+    @apply inline-block border border-brown-400 hover:bg-brown-100 text-brown-600 font-sans text-sm tracking-widest uppercase px-8 py-3 transition-colors duration-300;
+  }
+
+  .card {
+    @apply bg-white border border-brown-100 p-8 shadow-sm;
+  }
+}
