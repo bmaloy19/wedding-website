@@ -11,9 +11,9 @@ const heroVideo = [
 const heroPoster = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1' height='1'%3E%3Crect fill='%231B110A'/%3E%3C/svg%3E";
 
 const quickLinks = [
-  { href: '/details',  numeral: 'I',   title: 'The Celebration', desc: 'Two evenings of love, laughter, and lasting memories.' },
-  { href: '/travel',   numeral: 'II',  title: 'Getting Here',    desc: 'Everything you need to find your way to Des Moines.' },
-  { href: '/registry', numeral: 'III', title: 'Registry',        desc: 'Your presence is our greatest gift — but if you wish…' },
+  { href: '/details',  numeral: 'I',   title: 'Details',  desc: 'Two evenings of love, laughter, and lasting memories.' },
+  { href: '/travel',   numeral: 'II',  title: 'Travel',   desc: 'Everything you need to find your way to Des Moines.' },
+  { href: '/registry', numeral: 'III', title: 'Registry', desc: 'Your presence is our greatest gift — but if you wish…' },
 ];
 ---
 
@@ -62,7 +62,6 @@ const quickLinks = [
         Des Moines &middot; Iowa
       </p>
 
-      <a href="/rsvp" class="btn-ghost animate-fade-up" style="animation-delay:0.55s">Kindly Reply</a>
     </div>
 
     <!-- Scroll cue -->
@@ -71,21 +70,8 @@ const quickLinks = [
     </div>
   </section>
 
-  <!-- Quote section -->
-  <section class="py-28 px-6 text-center max-w-3xl mx-auto" data-reveal>
-    <p class="font-serif text-6xl text-gold/50 leading-none mb-2" aria-hidden="true">&ldquo;</p>
-    <p class="font-serif text-3xl md:text-4xl italic text-brown-500 leading-relaxed mb-8">
-      Whatever our souls are made of, his and hers are the same.
-    </p>
-    <div class="flex items-center justify-center gap-4">
-      <span class="block h-px w-10 bg-gold/50"></span>
-      <p class="eyebrow text-taupe">Emily Brontë</p>
-      <span class="block h-px w-10 bg-gold/50"></span>
-    </div>
-  </section>
-
   <!-- Quick links -->
-  <section class="pb-28 px-6">
+  <section class="py-28 px-6">
     <div class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
       {quickLinks.map((card, i) => (
         <a href={card.href} class="card group text-center" data-reveal style={`transition-delay:${i * 0.1}s`}>
