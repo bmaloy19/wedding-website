@@ -1,0 +1,57 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PageHero from '../components/PageHero.astro';
+
+// ── OUR STORY ──────────────────────────────────────────────────────────
+// Bryce & Kacey: replace the placeholder paragraphs below with your own
+// words. Add or remove <p> blocks as you like — the styling carries over.
+const story = [
+  'This is where our story goes. Somewhere between a first hello and forever, we found each other — and everything after has felt a little like home.',
+  'Type up the rest of the story here: how you met, the moment you knew, the road that led to this weekend. We left this space open for your own words.',
+];
+---
+
+<Layout
+  title="The Beginning — Kacey & Bryce"
+  description="How Bryce and Kacey found their way to forever."
+>
+
+  <!-- Hero -->
+  <PageHero
+    eyebrow="Our Story"
+    title="The Beginning"
+    subtitle="Somewhere between then and forever."
+    poster="/images/IMG_4704.JPG"
+    posterPosition="center 30%"
+  />
+
+  <!-- Story -->
+  <section class="py-24 px-6 max-w-2xl mx-auto">
+    <div data-reveal>
+      <p class="eyebrow text-center mb-4">Where it started</p>
+      <h2 class="section-title">How We Met</h2>
+      <div class="section-divider"><span class="gem"></span></div>
+    </div>
+
+    <div class="mt-12 space-y-8">
+      {story.map((para, i) => (
+        <p
+          class="font-serif text-xl md:text-2xl text-brown-500 leading-relaxed text-center"
+          data-reveal
+          style={`transition-delay:${i * 0.1}s`}
+        >
+          {para}
+        </p>
+      ))}
+    </div>
+  </section>
+
+  <!-- Closing -->
+  <section class="py-20 bg-cream text-center px-6 relative">
+    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-2/3 max-w-xl h-px bg-gradient-to-r from-transparent via-gold/40 to-transparent"></div>
+    <p class="font-serif text-2xl md:text-3xl italic text-brown-400 max-w-xl mx-auto leading-relaxed" data-reveal>
+      And the best part is still to come.
+    </p>
+  </section>
+
+</Layout>

@@ -1,0 +1,56 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PageHero from '../components/PageHero.astro';
+
+const faqs = [
+  {
+    numeral: 'I',
+    question: 'Are children invited?',
+    answer: "As much as we love your little ones, our celebration will be adults-only — consider it a well-deserved night off to relax and enjoy.",
+  },
+  {
+    numeral: 'II',
+    question: 'Can I bring a plus one?',
+    answer: "To keep our day intimate, we're only able to welcome the guests named on your invitation. Thank you for understanding.",
+  },
+];
+---
+
+<Layout
+  title="Good to Know — Kacey & Bryce"
+  description="Answers to a few common questions for our wedding weekend."
+>
+
+  <!-- Hero -->
+  <PageHero
+    eyebrow="A few answers"
+    title="Good to Know"
+    subtitle="The little details, sorted."
+    poster="/images/IMG_0450.JPG"
+  />
+
+  <!-- FAQ -->
+  <section class="py-24 px-6 max-w-3xl mx-auto space-y-14">
+    {faqs.map((f, i) => (
+      <div class="text-center" data-reveal style={`transition-delay:${i * 0.1}s`}>
+        <p class="font-serif text-4xl text-gold/40 leading-none mb-4">{f.numeral}</p>
+        <h2 class="font-serif font-medium text-3xl text-brown-600 mb-4">{f.question}</h2>
+        <p class="font-sans font-light text-base text-taupe max-w-xl mx-auto leading-relaxed">{f.answer}</p>
+      </div>
+    ))}
+  </section>
+
+  <!-- Still have questions -->
+  <section class="py-20 bg-cream text-center px-6 relative">
+    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-2/3 max-w-xl h-px bg-gradient-to-r from-transparent via-gold/40 to-transparent"></div>
+    <div data-reveal>
+      <p class="eyebrow mb-4">Still wondering?</p>
+      <p class="font-serif text-2xl italic text-brown-400 max-w-xl mx-auto leading-relaxed">
+        Anything we missed? Just
+        <a href="/rsvp" class="underline underline-offset-4 decoration-gold/50 hover:text-brown-500 transition-colors not-italic">reach out</a>
+        — we're happy to help.
+      </p>
+    </div>
+  </section>
+
+</Layout>

@@ -7,6 +7,16 @@
   font-display: swap;
 }
 
+/* Self-hosted nav font — drop AppleGaramond-Light.ttf into /public/fonts/.
+   Until the file is present, this falls back to Cormorant Garamond. */
+@font-face {
+  font-family: 'Apple Garamond';
+  src: url('/fonts/AppleGaramond-Light.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

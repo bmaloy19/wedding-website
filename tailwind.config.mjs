@@ -23,9 +23,10 @@ export default {
         gold:       '#B4945A',
       },
       fontFamily: {
-        serif:  ['"Cormorant Garamond"', 'Georgia', 'serif'],
-        sans:   ['"Jost"', 'system-ui', 'sans-serif'],
-        script: ['"Adora Bouton"', 'cursive'],
+        serif:    ['"Cormorant Garamond"', 'Georgia', 'serif'],
+        sans:     ['"Jost"', 'system-ui', 'sans-serif'],
+        script:   ['"Adora Bouton"', 'cursive'],
+        garamond: ['"Apple Garamond"', '"Cormorant Garamond"', 'Garamond', 'Georgia', 'serif'],
       },
       letterSpacing: {
         widest: '0.25em',

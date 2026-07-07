@@ -22,11 +22,13 @@
 
     <nav class="flex flex-wrap justify-center gap-x-10 gap-y-4 mb-12">
       {[
-        { href: '/',          label: 'Home'      },
-        { href: '/details',  label: 'Details'   },
-        { href: '/travel',   label: 'Travel'    },
-        { href: '/registry', label: 'Registry'  },
-        { href: '/rsvp',     label: 'RSVP'      },
+        { href: '/',           label: 'Home'          },
+        { href: '/beginning',  label: 'The Beginning' },
+        { href: '/weekend',    label: 'The Weekend'   },
+        { href: '/stay',       label: 'Stay Awhile'   },
+        { href: '/faq',        label: 'Good to Know'  },
+        { href: '/registry',   label: 'Registry'      },
+        { href: '/rsvp',       label: 'RSVP'          },
       ].map(link => (
         <a href={link.href} class="font-sans font-normal text-[0.65rem] tracking-mega uppercase text-taupe hover:text-champagne transition-colors duration-300">
           {link.label}

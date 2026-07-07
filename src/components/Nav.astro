@@ -1,10 +1,11 @@
 ---
 const navLinks = [
-  { href: '/',         label: 'Home'      },
-  { href: '/details', label: 'Details'   },
-  { href: '/travel',  label: 'Travel'    },
-  { href: '/registry',label: 'Registry'  },
-  { href: '/rsvp',    label: 'RSVP'      },
+  { href: '/beginning',  label: 'The Beginning' },
+  { href: '/weekend',    label: 'The Weekend'   },
+  { href: '/stay',       label: 'Stay Awhile'   },
+  { href: '/faq',        label: 'Good to Know'  },
+  { href: '/registry',   label: 'Registry'      },
+  { href: '/rsvp',       label: 'RSVP'          },
 ];
 
 const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
@@ -32,14 +33,14 @@ const isHome = currentPath === '/';
     </a>
 
     <!-- Desktop links -->
-    <ul class="hidden md:flex items-center gap-10">
+    <ul class="hidden lg:flex items-center gap-x-6 xl:gap-x-8">
       {navLinks.map(link => (
         <li>
           <a
             href={link.href}
             data-navlink
             class:list={[
-              'nav-link relative font-sans font-normal text-[0.65rem] tracking-mega uppercase pb-1 transition-colors duration-200',
+              'nav-link relative font-garamond font-normal text-[0.75rem] tracking-[0.2em] whitespace-nowrap uppercase pb-1 transition-colors duration-200',
               currentPath === link.href ? 'is-active' : '',
               isHome
                 ? 'text-cream/90 hover:text-champagne'
@@ -57,7 +58,7 @@ const isHome = currentPath === '/';
     <!-- Mobile hamburger -->
     <button
       id="nav-toggle"
-      class:list={['md:hidden focus:outline-none transition-colors duration-500', isHome ? 'text-cream' : 'text-brown-500']}
+      class:list={['lg:hidden focus:outline-none transition-colors duration-500', isHome ? 'text-cream' : 'text-brown-500']}
       aria-label="Toggle menu"
     >
       <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -67,14 +68,14 @@ const isHome = currentPath === '/';
   </nav>
 
   <!-- Mobile menu -->
-  <div id="mobile-menu" class="hidden md:hidden border-t border-gold/20 bg-ivory/98 backdrop-blur-sm">
+  <div id="mobile-menu" class="hidden lg:hidden border-t border-gold/20 bg-ivory/98 backdrop-blur-sm">
     <ul class="flex flex-col items-center gap-7 py-10">
       {navLinks.map(link => (
         <li>
           <a
             href={link.href}
             class:list={[
-              'font-sans font-normal text-[0.7rem] tracking-mega uppercase transition-colors',
+              'font-garamond font-normal text-[0.85rem] tracking-mega uppercase transition-colors',
               currentPath === link.href ? 'text-gold' : 'text-taupe hover:text-brown-600',
             ]}
           >

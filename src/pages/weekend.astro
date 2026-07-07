@@ -1,0 +1,157 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PageHero from '../components/PageHero.astro';
+
+const days = [
+  {
+    day: 'The Day Before',
+    numeral: 'I',
+    date: 'Thursday, November 18, 2027',
+    label: 'Welcome Drinks',
+    tagline: 'Details to come.',
+    events: [
+      { time: '6:00 PM', name: 'Welcome Drinks', detail: 'Surety Hotel · Solarium' },
+    ],
+  },
+  {
+    day: 'The Wedding Day',
+    numeral: 'II',
+    date: 'Friday, November 19, 2027',
+    label: 'See You at the Courthouse',
+    tagline: 'Where we say “I do.”',
+    events: [
+      { time: '3:00 PM', name: 'Ceremony', detail: 'An intimate ceremony — just us and our grandmothers.' },
+    ],
+  },
+  {
+    day: 'The Wedding Day',
+    numeral: 'III',
+    date: 'Friday, November 19, 2027',
+    label: 'Dinner. Dancing. Champagne.',
+    tagline: 'And then we celebrate.',
+    events: [
+      { time: '5:30 PM',  name: 'Cocktail Hour',      detail: 'Willow on Grand' },
+      { time: '6:30 PM',  name: 'Dinner & Reception', detail: 'Willow on Grand' },
+      { time: '11:00 PM', name: 'Send-off',           detail: 'Farewell & sparkler exit' },
+    ],
+  },
+];
+
+const essentials = [
+  {
+    label: 'Dress Code',
+    body: 'Thursday evening calls for white cocktail attire. Friday details to come.',
+  },
+  {
+    label: 'Transportation',
+    body: 'Shuttles will run from the Surety Hotel to Willow on Grand, and back to the hotel at the end of the night.',
+  },
+  {
+    label: 'Parking',
+    body: 'Details coming soon.',
+  },
+  {
+    label: 'Hotel',
+    body: "We've reserved a room block at the Surety Hotel.",
+  },
+];
+---
+
+<Layout
+  title="The Weekend — Kacey & Bryce"
+  description="The schedule and everything you need for our celebration in Des Moines, Iowa."
+>
+
+  <!-- Hero -->
+  <PageHero
+    eyebrow="November 18–19, 2027"
+    title="The Weekend"
+    subtitle="Save room for champagne."
+    poster="/images/IMG_0453.JPG"
+  />
+
+  <!-- Intro -->
+  <section class="pt-24 pb-4 px-6 max-w-2xl mx-auto text-center" data-reveal>
+    <p class="font-serif text-2xl md:text-3xl italic text-brown-500 leading-relaxed">
+      Consider this your guide to our favorite weekend yet. We're honored you'll be
+      celebrating alongside us and can't wait to share every moment with you.
+    </p>
+  </section>
+
+  <!-- Day cards -->
+  <section class="py-20 px-6 max-w-5xl mx-auto space-y-24">
+    {days.map((d, idx) => (
+      <div class:list={['grid gap-12 items-center', idx % 2 !== 0 ? 'md:grid-cols-[2fr_1fr]' : 'md:grid-cols-[1fr_2fr]']} data-reveal>
+
+        <!-- Label side -->
+        <div class:list={['md:text-right', idx % 2 !== 0 ? 'md:order-last md:text-left' : '']}>
+          <p class="font-serif text-5xl text-gold/40 leading-none mb-3">{d.numeral}</p>
+          <p class="eyebrow mb-3">{d.day}</p>
+          <h2 class="font-serif font-medium text-3xl md:text-4xl text-brown-600 italic mb-3 leading-snug">{d.label}</h2>
+          <p class="font-sans font-normal text-[0.65rem] tracking-mega uppercase text-taupe mb-4">{d.date}</p>
+          <p class="font-serif text-lg italic text-brown-400 leading-relaxed">{d.tagline}</p>
+        </div>
+
+        <!-- Timeline -->
+        <div class="frame-luxe !p-0 overflow-hidden">
+          <div class="relative py-4">
+            {d.events.map((event, i) => (
+              <div class:list={[
+                'relative flex items-start gap-8 px-8 md:px-12 py-6',
+                i < d.events.length - 1 ? 'border-b border-brown-100/70' : '',
+              ]}>
+                <span class="font-serif font-medium text-lg text-gold whitespace-nowrap w-24 shrink-0 text-right">
+                  {event.time}
+                </span>
+                <span class="text-gold/60 text-[0.6rem] pt-2 shrink-0">&#9670;</span>
+                <div>
+                  <p class="font-serif font-medium text-2xl text-brown-600 leading-tight">{event.name}</p>
+                  <p class="font-sans font-light text-sm text-taupe mt-1 whitespace-pre-line">{event.detail}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+      </div>
+    ))}
+  </section>
+
+  <!-- The essentials -->
+  <section class="py-24 bg-cream px-6 relative">
+    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-2/3 max-w-xl h-px bg-gradient-to-r from-transparent via-gold/40 to-transparent"></div>
+    <div class="max-w-5xl mx-auto">
+      <div data-reveal>
+        <p class="eyebrow text-center mb-4">Everything you need</p>
+        <h2 class="section-title">The Essentials</h2>
+        <div class="section-divider"><span class="gem"></span></div>
+      </div>
+
+      <div class="grid sm:grid-cols-2 gap-8 mt-12">
+        {essentials.map((item, i) => (
+          <div class="frame-luxe" data-reveal style={`transition-delay:${i * 0.1}s`}>
+            <p class="eyebrow mb-3">{item.label}</p>
+            <p class="font-serif text-lg text-brown-500 leading-relaxed">{item.body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- A note from us -->
+  <section class="py-24 text-center px-6 max-w-2xl mx-auto" data-reveal>
+    <p class="eyebrow mb-4">A note from us</p>
+    <div class="section-divider"><span class="gem"></span></div>
+    <p class="font-serif text-2xl md:text-3xl italic text-brown-500 leading-relaxed mt-6">
+      We dreamed of a wedding that felt less like an event and more like inviting
+      everyone we love into one room. Every detail has been chosen with you in mind,
+      and we can't wait to celebrate together.
+    </p>
+  </section>
+
+  <!-- CTA -->
+  <section class="pb-24 text-center px-6" data-reveal>
+    <a href="/rsvp" class="btn-primary">RSVP</a>
+  </section>
+
+</Layout>

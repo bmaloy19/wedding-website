@@ -1,41 +1,63 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import RSVPForm from '../components/RSVPForm.astro';
 import PageHero from '../components/PageHero.astro';
+
+// ── RSVP CONTACTS ──────────────────────────────────────────────────────
+// Replace the placeholder numbers with your real ones. `tel` should be
+// digits only (e.g. '15155551234'); `display` is what guests see.
+const contacts = [
+  { name: 'Bryce', display: '(000) 000-0000', tel: '10000000000' },
+  { name: 'Kacey', display: '(000) 000-0000', tel: '10000000000' },
+];
 ---
 
 <Layout
   title="RSVP — Kacey & Bryce"
-  description="Kindly reply to our wedding invitation by October 1, 2027."
+  description="Text us to let us know if you can join us. Kindly reply by October 1, 2027."
 >
 
   <!-- Hero -->
   <PageHero
     eyebrow="Kindly reply by October 1, 2027"
     title="RSVP"
-    subtitle="We would be so honoured to have you join us. Please let us know if you are able to attend — it means the world."
+    subtitle="No forms, no fuss — just send us a text and let us know if you can make it."
     poster="/images/IMG_0459.JPG"
     posterPosition="center 32%"
   />
 
-  <!-- Form — presented like a printed reply card -->
+  <!-- Text us -->
   <section class="py-24 px-6 max-w-2xl mx-auto">
-    <div class="frame-luxe" data-reveal>
-      <div class="text-center mb-12">
-        <p class="eyebrow mb-4">The pleasure of a reply</p>
-        <h2 class="font-serif font-medium text-4xl text-brown-600">Your Response</h2>
-        <div class="section-divider !my-6"><span class="gem"></span></div>
+    <div class="frame-luxe text-center" data-reveal>
+      <p class="eyebrow mb-4">The pleasure of a reply</p>
+      <h2 class="font-serif font-medium text-4xl text-brown-600">Send Us a Text</h2>
+      <div class="section-divider !my-6"><span class="gem"></span></div>
+
+      <p class="font-serif text-xl italic text-brown-500 max-w-lg mx-auto leading-relaxed mb-10">
+        We're keeping it simple — just text one of us to let us know whether you'll
+        be there, along with anyone in your party. We can't wait to hear from you.
+      </p>
+
+      <div class="grid sm:grid-cols-2 gap-6">
+        {contacts.map((c) => (
+          <a
+            href={`sms:+${c.tel}`}
+            class="group block border border-gold/30 bg-white/70 px-6 py-8 transition-all duration-500 ease-luxe hover:border-gold/60 hover:-translate-y-1 hover:shadow-[0_20px_50px_-24px_rgba(42,27,16,0.25)]"
+          >
+            <p class="eyebrow mb-3">Text</p>
+            <p class="font-serif font-medium text-3xl text-brown-600 mb-2 transition-colors group-hover:text-brown-500">{c.name}</p>
+            <p class="font-sans font-light text-base tracking-wide text-taupe">{c.display}</p>
+          </a>
+        ))}
       </div>
-      <RSVPForm />
     </div>
   </section>
 
   <!-- Note -->
   <section class="pb-24 px-6 max-w-xl mx-auto text-center">
     <p class="font-sans font-light text-xs text-taupe leading-relaxed">
-      If you have any trouble submitting, please reach out directly at
+      Prefer email? You can always reach us at
       <a href="mailto:bmaloy19@gmail.com" class="underline underline-offset-4 decoration-gold/40 hover:text-brown-500 transition-colors">bmaloy19@gmail.com</a>.
-      We will be happy to note your response personally.
+      We'll be happy to note your response personally.
     </p>
   </section>
 
