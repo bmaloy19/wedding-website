@@ -8,9 +8,6 @@ const quickLinks = [
   { href: '/beginning', numeral: 'I',   title: 'The Beginning', desc: 'Somewhere between then and forever.' },
   { href: '/weekend',   numeral: 'II',  title: 'The Weekend',   desc: 'Save room for champagne.' },
   { href: '/stay',      numeral: 'III', title: 'Stay Awhile',   desc: "Where we'd spend a Saturday." },
-  { href: '#', numeral: 'IV', title: 'Powerlife', desc: 'Our favorite gym in Des Moines.' },
-  { href: '#', numeral: 'V', title: 'Greys Lake', desc: 'Beautiful trails and peaceful views.' },
-  { href: '#', numeral: 'VI', title: 'East Village', desc: 'Charming boutiques, cafés, and dining.' },
 ];
 ---
 
@@ -48,7 +45,7 @@ const quickLinks = [
 
   <!-- Quick links -->
   <section class="py-28 px-6">
-    <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+    <div class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
       {quickLinks.map((card, i) => (
         <a href={card.href} class="card group text-center" data-reveal style={`transition-delay:${i * 0.1}s`}>
           <p class="font-serif text-2xl text-gold/70 mb-1">{card.numeral}</p>
