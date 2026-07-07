@@ -8,6 +8,9 @@ const quickLinks = [
   { href: '/beginning', numeral: 'I',   title: 'The Beginning', desc: 'Somewhere between then and forever.' },
   { href: '/weekend',   numeral: 'II',  title: 'The Weekend',   desc: 'Save room for champagne.' },
   { href: '/stay',      numeral: 'III', title: 'Stay Awhile',   desc: "Where we'd spend a Saturday." },
+  { href: '#', numeral: 'IV', title: 'Powerlife', desc: 'Our favorite gym in Des Moines.' },
+  { href: '#', numeral: 'V', title: 'Greys Lake', desc: 'Beautiful trails and peaceful views.' },
+  { href: '#', numeral: 'VI', title: 'East Village', desc: 'Charming boutiques, cafés, and dining.' },
 ];
 ---
 
@@ -21,37 +24,17 @@ const quickLinks = [
       overlay="bg-gradient-to-b from-ink/70 via-ink/35 to-ink/80"
     />
 
-    <!-- Decorative double-hairline corner flourishes -->
-    <div class="absolute top-10 left-10 w-24 h-24 border-t border-l border-champagne/40 z-10 hidden sm:block">
-      <div class="absolute top-1.5 left-1.5 w-full h-full border-t border-l border-champagne/25"></div>
-    </div>
-    <div class="absolute top-10 right-10 w-24 h-24 border-t border-r border-champagne/40 z-10 hidden sm:block">
-      <div class="absolute top-1.5 right-1.5 w-full h-full border-t border-r border-champagne/25"></div>
-    </div>
-    <div class="absolute bottom-10 left-10 w-24 h-24 border-b border-l border-champagne/40 z-10 hidden sm:block">
-      <div class="absolute bottom-1.5 left-1.5 w-full h-full border-b border-l border-champagne/25"></div>
-    </div>
-    <div class="absolute bottom-10 right-10 w-24 h-24 border-b border-r border-champagne/40 z-10 hidden sm:block">
-      <div class="absolute bottom-1.5 right-1.5 w-full h-full border-b border-r border-champagne/25"></div>
-    </div>
-
     <div class="relative z-10 flex flex-col items-center">
-      <p class="eyebrow text-champagne/90 mb-8 animate-fade-in">The Wedding Of</p>
+      <p class="eyebrow text-white mb-8 animate-fade-in">The Wedding Of</p>
 
-      <h1 class="font-script text-7xl md:text-9xl text-cream leading-none mb-4 text-shadow-elegant animate-fade-up">
+      <h1 class="font-script text-7xl md:text-9xl text-white leading-none mb-12 text-shadow-elegant animate-fade-up">
         Kacey <span class="text-[0.7em] align-middle -ml-[0.35em]">&amp;</span> Bryce
       </h1>
 
-      <div class="flex items-center gap-5 my-8 animate-fade-up" style="animation-delay:0.2s">
-        <div class="h-px w-20 bg-gradient-to-r from-transparent to-gold"></div>
-        <span class="text-gold text-sm">&#10022;</span>
-        <div class="h-px w-20 bg-gradient-to-l from-transparent to-gold"></div>
-      </div>
-
-      <p class="font-serif font-medium text-2xl md:text-3xl tracking-[0.25em] uppercase text-cream mb-3 text-shadow-elegant animate-fade-up" style="animation-delay:0.3s">
+      <p class="font-serif font-medium text-2xl md:text-3xl tracking-[0.25em] uppercase text-white mb-3 text-shadow-elegant animate-fade-up" style="animation-delay:0.3s">
         November 19, 2027
       </p>
-      <p class="eyebrow text-champagne/80 mb-12 animate-fade-up" style="animation-delay:0.4s">
+      <p class="eyebrow text-white mb-12 animate-fade-up" style="animation-delay:0.4s">
         Des Moines &middot; Iowa
       </p>
 
@@ -65,7 +48,7 @@ const quickLinks = [
 
   <!-- Quick links -->
   <section class="py-28 px-6">
-    <div class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
+    <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
       {quickLinks.map((card, i) => (
         <a href={card.href} class="card group text-center" data-reveal style={`transition-delay:${i * 0.1}s`}>
           <p class="font-serif text-2xl text-gold/70 mb-1">{card.numeral}</p>

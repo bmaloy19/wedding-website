@@ -25,16 +25,11 @@ const { eyebrow, title, subtitle, poster, video, posterPosition, posterFit } = A
 
   <div class="relative z-10 max-w-3xl mx-auto">
     {eyebrow && (
-      <p class="eyebrow text-champagne/90 mb-6 animate-fade-in">{eyebrow}</p>
+      <p class="eyebrow text-white mb-6 animate-fade-in">{eyebrow}</p>
     )}
     <h1 class="font-serif font-medium text-5xl md:text-7xl text-cream text-shadow-elegant animate-fade-up">{title}</h1>
-    <div class="flex items-center justify-center gap-4 my-8 animate-fade-up" style="animation-delay:0.15s">
-      <div class="h-px w-16 bg-gradient-to-r from-transparent to-gold"></div>
-      <span class="text-gold text-sm">&#10022;</span>
-      <div class="h-px w-16 bg-gradient-to-l from-transparent to-gold"></div>
-    </div>
     {subtitle && (
-      <p class="font-serif text-xl md:text-2xl italic text-cream/90 text-shadow-elegant max-w-2xl mx-auto leading-relaxed animate-fade-up" style="animation-delay:0.25s">
+      <p class="font-serif text-xl md:text-2xl italic text-cream/90 text-shadow-elegant max-w-2xl mx-auto leading-relaxed animate-fade-up mt-8" style="animation-delay:0.25s">
         {subtitle}
       </p>
     )}

@@ -5,31 +5,22 @@ import PageHero from '../components/PageHero.astro';
 // Our favorite spots around town
 const favorites = [
   {
-    numeral: 'I',
     type: 'Coffee',
     name: 'Northern Vessel',
     desc: 'Our favorite coffee shop — where slow mornings happen.',
   },
   {
-    numeral: 'II',
     type: 'Date Night',
     name: 'Cosi Cucina',
     desc: 'Our go-to date-night spot.',
   },
   {
-    numeral: 'III',
     type: 'Drinks',
     name: 'Exile Brewery',
     desc: 'One of our favorite local breweries.',
   },
 ];
 
-// A few more Des Moines gems for anyone making a weekend of it
-const moreSpots = [
-  { type: 'Art & Culture', name: 'Pappajohn Sculpture Park', desc: 'A stunning outdoor gallery in the heart of downtown.' },
-  { type: 'Food & Drink',  name: 'East Village',             desc: 'Charming boutiques, cafés, and acclaimed restaurants.' },
-  { type: 'Landmark',      name: 'Iowa State Capitol',       desc: 'One of the most beautiful capitol buildings in the country.' },
-];
 ---
 
 <Layout
@@ -47,49 +38,31 @@ const moreSpots = [
   />
 
   <!-- Our favorite spots -->
-  <section class="py-24 px-6 max-w-5xl mx-auto">
+  <section class="py-24 px-6 max-w-3xl mx-auto">
     <div data-reveal>
       <p class="eyebrow text-center mb-4">A few of our favorites</p>
       <h2 class="section-title">Our Favorite Spots</h2>
-      <div class="section-divider"><span class="gem"></span></div>
-      <p class="font-serif text-xl italic text-brown-400 text-center max-w-xl mx-auto mb-4 leading-relaxed">
+      <p class="font-serif text-xl italic text-brown-400 text-center max-w-xl mx-auto mt-8 mb-4 leading-relaxed">
         If you're staying the weekend, here's where you'll find us.
       </p>
     </div>
 
-    <div class="grid md:grid-cols-3 gap-8 mt-12">
+    <div class="mt-14 space-y-6">
       {favorites.map((item, i) => (
-        <div class="card card-hover text-center" data-reveal style={`transition-delay:${i * 0.1}s`}>
-          <p class="font-serif text-2xl text-gold/70 mb-1">{item.numeral}</p>
-          <div class="w-8 h-px bg-gold/40 mx-auto mb-6"></div>
-          <p class="eyebrow mb-2">{item.type}</p>
-          <h3 class="font-serif font-medium text-2xl text-brown-600 mb-3">{item.name}</h3>
-          <p class="font-sans font-light text-sm text-taupe leading-relaxed">{item.desc}</p>
+        <div
+          class="group frame-luxe !p-8 md:!p-10 flex flex-col md:flex-row md:items-baseline gap-2 md:gap-10 transition-all duration-500 ease-luxe hover:-translate-y-1 hover:shadow-[0_20px_50px_-24px_rgba(42,27,16,0.25)]"
+          data-reveal
+          style={`transition-delay:${i * 0.1}s`}
+        >
+          <p class="eyebrow shrink-0 md:w-28">{item.type}</p>
+          <div>
+            <h3 class="font-serif font-medium text-3xl text-brown-600 mb-2 transition-colors group-hover:text-brown-500">{item.name}</h3>
+            <p class="font-serif text-lg italic text-brown-400 leading-relaxed">{item.desc}</p>
+          </div>
         </div>
       ))}
     </div>
   </section>
 
-  <!-- A few more Des Moines gems -->
-  <section class="py-24 bg-cream px-6 text-center relative">
-    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-2/3 max-w-xl h-px bg-gradient-to-r from-transparent via-gold/40 to-transparent"></div>
-    <div data-reveal>
-      <p class="eyebrow mb-4">Make a weekend of it</p>
-      <h2 class="section-title">While You're in Town</h2>
-      <div class="section-divider"><span class="gem"></span></div>
-      <p class="font-serif text-xl italic text-brown-400 max-w-2xl mx-auto leading-relaxed mb-14">
-        A few more Des Moines gems worth a visit.
-      </p>
-    </div>
-    <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto text-left">
-      {moreSpots.map((item, i) => (
-        <div class="card card-hover" data-reveal style={`transition-delay:${i * 0.1}s`}>
-          <p class="eyebrow mb-2">{item.type}</p>
-          <h3 class="font-serif font-medium text-2xl text-brown-600 mb-2">{item.name}</h3>
-          <p class="font-sans font-light text-sm text-taupe leading-relaxed">{item.desc}</p>
-        </div>
-      ))}
-    </div>
-  </section>
 
 </Layout>
