@@ -48,19 +48,14 @@ const registries = [
     </p>
   </section>
 
-  <!-- Registry cards -->
-  <section class="pb-28 px-6 max-w-4xl mx-auto">
-    <div class="grid md:grid-cols-3 gap-8">
-      {registries.map((r, i) => (
-        <div class="card card-hover text-center flex flex-col justify-between" data-reveal style={`transition-delay:${i * 0.1}s`}>
-          <div>
-            <div class="w-8 h-px bg-gold/40 mx-auto mb-6"></div>
-            <h3 class="font-serif font-medium text-2xl text-brown-600 mb-3">{r.name}</h3>
-            <p class="font-sans font-light text-sm text-taupe leading-relaxed mb-8">{r.description}</p>
-          </div>
-          <a href={r.link} class="btn-outline">{r.linkText}</a>
-        </div>
-      ))}
+  <!-- Registry — coming soon (swap back to the registries.map card grid once links are ready) -->
+  <section class="pb-28 px-6 max-w-xl mx-auto text-center" data-reveal>
+    <div class="card">
+      <div class="w-8 h-px bg-gold/40 mx-auto mb-6"></div>
+      <p class="eyebrow mb-3">Coming Soon</p>
+      <p class="font-serif text-2xl italic text-brown-500 leading-relaxed">
+        Our registry is still coming together — check back soon.
+      </p>
     </div>
   </section>
 

@@ -28,7 +28,7 @@ const days = [
     tagline: 'And then we celebrate.',
     events: [
       { time: '5:00 PM',  name: 'Dinner & Reception', detail: 'Willow on Grand' },
-      { time: '11:00 PM', name: 'Send-off',           detail: 'Farewell & sparkler exit' },
+      { time: '11:00 PM', name: 'Send-off' },
     ],
   },
 ];
@@ -97,7 +97,9 @@ const essentials = [
                 <span class="text-gold/60 text-[0.6rem] pt-2 shrink-0">&#9670;</span>
                 <div>
                   <p class="font-serif font-medium text-2xl text-brown-600 leading-tight">{event.name}</p>
-                  <p class="font-sans font-light text-sm text-taupe mt-1 whitespace-pre-line">{event.detail}</p>
+                  {event.detail && (
+                    <p class="font-sans font-light text-sm text-taupe mt-1 whitespace-pre-line">{event.detail}</p>
+                  )}
                 </div>
               </div>
             ))}
