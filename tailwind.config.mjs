@@ -4,23 +4,29 @@ export default {
   theme: {
     extend: {
       colors: {
-        ivory:      '#FAF7F1',
-        cream:      '#F4EEE2',
-        parchment:  '#EAE0CD',
-        blush:      '#E7D3BE',
-        taupe:      '#A28E76',
+        /* Core palette */
+        coffee:     '#6E4E3D',
+        saddle:     '#4F3729',
+        bistre:     '#443024',
+        cement:     '#887262',
+        chamoisee:  '#9D7F65',
+
+        /* Light neutrals — tints of the core palette */
+        ivory:      '#FAF8F5',
+        cream:      '#F3EEE7',
+        taupe:      '#887262', /* Cement */
         brown: {
-          100: '#EFE7DA',
-          200: '#DCC9B0',
-          300: '#BC9E7D',
-          400: '#97744F',
-          500: '#6F4E33',
-          600: '#452F1D',
-          700: '#2A1B10',
+          100: '#EEE8E1',
+          200: '#D6C8BB',
+          300: '#B59F8B',
+          400: '#9D7F65', /* Chamoisee */
+          500: '#6E4E3D', /* Coffee */
+          600: '#4F3729', /* Saddle */
+          700: '#443024', /* Bistre */
         },
-        ink:        '#1B110A',
-        champagne:  '#EBD8AF',
-        gold:       '#B4945A',
+        ink:        '#221812',
+        champagne:  '#E7D8C6',
+        gold:       '#9D7F65', /* Chamoisee */
       },
       fontFamily: {
         serif:    ['"Cormorant Garamond"', 'Georgia', 'serif'],

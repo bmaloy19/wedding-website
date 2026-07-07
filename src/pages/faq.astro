@@ -4,12 +4,10 @@ import PageHero from '../components/PageHero.astro';
 
 const faqs = [
   {
-    numeral: 'I',
     question: 'Are children invited?',
     answer: "As much as we love your little ones, we've chosen to keep our wedding day an adults-only celebration. We hope you'll join us for an evening of good food, great music, and plenty of dancing.",
   },
   {
-    numeral: 'II',
     question: 'Can I bring a plus one?',
     answer: "We've thoughtfully curated our guest list and kindly ask that only those listed on your invitation attend our celebration. Thank you for helping us keep our day exactly as we've envisioned.",
   },
@@ -33,7 +31,6 @@ const faqs = [
   <section class="py-24 px-6 max-w-3xl mx-auto space-y-14">
     {faqs.map((f, i) => (
       <div class="text-center" data-reveal style={`transition-delay:${i * 0.1}s`}>
-        <p class="font-serif text-4xl text-gold/40 leading-none mb-4">{f.numeral}</p>
         <h2 class="font-serif font-medium text-3xl text-brown-600 mb-4">{f.question}</h2>
         <p class="font-sans font-light text-base text-taupe max-w-xl mx-auto leading-relaxed">{f.answer}</p>
       </div>

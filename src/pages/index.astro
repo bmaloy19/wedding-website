@@ -5,9 +5,9 @@ import BgMedia from '../components/BgMedia.astro';
 const heroPoster = '/images/IMG_4708.JPG';
 
 const quickLinks = [
-  { href: '/beginning', numeral: 'I',   title: 'The Beginning', desc: 'Somewhere between then and forever.' },
-  { href: '/weekend',   numeral: 'II',  title: 'The Weekend',   desc: 'Save room for champagne.' },
-  { href: '/stay',      numeral: 'III', title: 'Stay Awhile',   desc: "Where we'd spend a Saturday." },
+  { href: '/beginning', title: 'The Beginning', desc: 'Somewhere between then and forever.' },
+  { href: '/weekend',   title: 'The Weekend',   desc: 'Save room for champagne.' },
+  { href: '/stay',      title: 'Stay Awhile',   desc: "Where we'd spend a Saturday." },
 ];
 ---
 
@@ -48,7 +48,6 @@ const quickLinks = [
     <div class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
       {quickLinks.map((card, i) => (
         <a href={card.href} class="card group text-center" data-reveal style={`transition-delay:${i * 0.1}s`}>
-          <p class="font-serif text-2xl text-gold/70 mb-1">{card.numeral}</p>
           <div class="w-8 h-px bg-gold/40 mx-auto mb-6 transition-all duration-500 ease-luxe group-hover:w-16 group-hover:bg-gold"></div>
           <h3 class="font-serif font-medium text-2xl text-brown-600 mb-3 transition-colors group-hover:text-brown-500">{card.title}</h3>
           <p class="font-sans font-light text-sm text-taupe leading-relaxed mb-6">{card.desc}</p>

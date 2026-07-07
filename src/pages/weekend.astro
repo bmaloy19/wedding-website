@@ -5,7 +5,6 @@ import PageHero from '../components/PageHero.astro';
 const days = [
   {
     day: 'The Day Before',
-    numeral: 'I',
     date: 'Thursday, November 18, 2027',
     label: 'Welcome Drinks',
     tagline: 'Details to come.',
@@ -15,17 +14,15 @@ const days = [
   },
   {
     day: 'The Wedding Day',
-    numeral: 'II',
     date: 'Friday, November 19, 2027',
     label: 'See You at the Courthouse',
     tagline: 'Where we say “I do.”',
     events: [
-      { time: '3:00 PM', name: 'Ceremony', detail: 'An intimate ceremony — just us and our grandmas. Guests welcome to join for a cocktail hour in the Midland Room at Surety Hotel.' },
+      { time: '3:00 PM', name: 'Ceremony', detail: 'An intimate ceremony — just us and our grandmas. Guests are welcome to join for a cocktail hour in the Midland Room at Surety Hotel.' },
     ],
   },
   {
     day: 'The Wedding Day',
-    numeral: 'III',
     date: 'Friday, November 19, 2027',
     label: 'Dinner. Dancing. Champagne.',
     tagline: 'And then we celebrate.',
@@ -39,7 +36,7 @@ const days = [
 const essentials = [
   {
     label: 'Dress Code',
-    body: 'Black tie in neutrals, brown, beige, champagne and earthy tone colors.',
+    body: 'Black tie attire with a palette of warm neutrals, rich browns, soft beiges, champagne, and earthy hues is warmly encouraged.',
   },
   {
     label: 'Shuttle Services',
@@ -80,7 +77,6 @@ const essentials = [
 
         <!-- Label side -->
         <div class:list={['md:text-right', idx % 2 !== 0 ? 'md:order-last md:text-left' : '']}>
-          <p class="font-serif text-5xl text-gold/40 leading-none mb-3">{d.numeral}</p>
           <p class="eyebrow mb-3">{d.day}</p>
           <h2 class="font-serif font-medium text-3xl md:text-4xl text-brown-600 italic mb-3 leading-snug">{d.label}</h2>
           <p class="font-sans font-normal text-[0.65rem] tracking-mega uppercase text-taupe mb-4">{d.date}</p>

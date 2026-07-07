@@ -9,15 +9,17 @@ const navLinks = [
 ];
 
 const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
-const isHome = currentPath === '/';
+// Every page opens with a full-bleed hero, so the nav starts transparent and
+// floats over the image, then turns solid once the guest scrolls past it.
+const overHero = true;
 ---
 
 <header
   id="site-nav"
-  data-home={isHome ? 'true' : 'false'}
+  data-overlay={overHero ? 'true' : 'false'}
   class:list={[
     'fixed top-0 left-0 right-0 z-50 transition-all duration-500',
-    isHome
+    overHero
       ? 'bg-transparent border-b border-transparent'
       : 'bg-ivory/95 backdrop-blur-sm border-b border-brown-100',
   ]}
@@ -27,7 +29,7 @@ const isHome = currentPath === '/';
     <!-- Monogram / Logo -->
     <a href="/" id="nav-logo" class:list={[
       'font-script text-3xl transition-colors duration-500',
-      isHome ? 'text-cream hover:text-champagne' : 'text-brown-500 hover:text-brown-600',
+      overHero ? 'text-cream hover:text-champagne' : 'text-brown-500 hover:text-brown-600',
     ]}>
       The Maloy's
     </a>
@@ -42,7 +44,7 @@ const isHome = currentPath === '/';
             class:list={[
               'nav-link relative font-garamond font-normal text-[0.75rem] tracking-[0.2em] whitespace-nowrap uppercase pb-1 transition-colors duration-200',
               currentPath === link.href ? 'is-active' : '',
-              isHome
+              overHero
                 ? 'text-cream/90 hover:text-champagne'
                 : (currentPath === link.href
                     ? 'text-brown-600'
@@ -58,7 +60,7 @@ const isHome = currentPath === '/';
     <!-- Mobile hamburger -->
     <button
       id="nav-toggle"
-      class:list={['lg:hidden focus:outline-none transition-colors duration-500', isHome ? 'text-cream' : 'text-brown-500']}
+      class:list={['lg:hidden focus:outline-none transition-colors duration-500', overHero ? 'text-cream' : 'text-brown-500']}
       aria-label="Toggle menu"
     >
       <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -113,10 +115,10 @@ const isHome = currentPath === '/';
   const menu   = document.getElementById('mobile-menu');
   toggle?.addEventListener('click', () => menu?.classList.toggle('hidden'));
 
-  // On the homepage, the nav starts transparent over the hero video and
-  // becomes solid once the guest scrolls past it.
+  // Pages open with a full-bleed hero: the nav starts transparent over the
+  // media and becomes solid once the guest scrolls past it.
   const nav = document.getElementById('site-nav');
-  if (nav?.dataset.home === 'true') {
+  if (nav?.dataset.overlay === 'true') {
     const logo  = document.getElementById('nav-logo');
     const links = Array.from(document.querySelectorAll('[data-navlink]'));
 
