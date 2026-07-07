@@ -7,15 +7,19 @@ interface Props {
   subtitle?: string;
   poster: string;          // background image (placeholder or your own)
   video?: string | string[];
+  posterPosition?: string; // CSS object-position for the poster image, e.g. "center 25%"
+  posterFit?: 'cover' | 'contain';
 }
 
-const { eyebrow, title, subtitle, poster, video } = Astro.props;
+const { eyebrow, title, subtitle, poster, video, posterPosition, posterFit } = Astro.props;
 ---
 
 <section class="hero-overlay-media relative flex flex-col items-center justify-center text-center overflow-hidden px-6 py-36 md:py-48">
   <BgMedia
     video={video}
     poster={poster}
+    posterPosition={posterPosition}
+    posterFit={posterFit}
     overlay="bg-gradient-to-b from-ink/70 via-ink/45 to-ink/75"
   />
 

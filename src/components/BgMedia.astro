@@ -9,6 +9,8 @@ interface Props {
   poster: string;                 // always-visible image (also the fallback)
   overlay?: string;               // tailwind gradient/colour classes for the scrim
   class?: string;                 // extra classes on the wrapper
+  posterPosition?: string;        // CSS object-position for the poster image, e.g. "center 25%"
+  posterFit?: 'cover' | 'contain'; // 'contain' shows the whole photo (e.g. a tall portrait) on a blurred backdrop instead of cropping it tight
 }
 
 const {
@@ -16,6 +18,8 @@ const {
   poster,
   overlay = 'bg-gradient-to-b from-brown-700/50 via-brown-700/30 to-brown-700/60',
   class: extra = '',
+  posterPosition = 'center',
+  posterFit = 'cover',
 } = Astro.props;
 
 const sources = video ? (Array.isArray(video) ? video : [video]) : [];
@@ -37,8 +41,14 @@ const sources = video ? (Array.isArray(video) ? video : [video]) : [];
   )}
 
   <!-- Poster shows beneath/until the video paints, and remains if it fails -->
-  {sources.length === 0 && (
-    <img src={poster} alt="" class="absolute inset-0 h-full w-full object-cover" />
+  {sources.length === 0 && posterFit === 'contain' && (
+    <>
+      <img src={poster} alt="" class="absolute inset-0 h-full w-full object-cover scale-110 blur-2xl" />
+      <img src={poster} alt="" class="absolute inset-0 h-full w-full object-contain" />
+    </>
+  )}
+  {sources.length === 0 && posterFit === 'cover' && (
+    <img src={poster} alt="" class="absolute inset-0 h-full w-full object-cover" style={`object-position: ${posterPosition}`} />
   )}
 
   <div class:list={['absolute inset-0', overlay]}></div>

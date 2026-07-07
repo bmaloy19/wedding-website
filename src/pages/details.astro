@@ -4,27 +4,24 @@ import PageHero from '../components/PageHero.astro';
 
 const days = [
   {
-    day: 'Day One',
+    day: 'The Day Before',
     numeral: 'I',
-    date: 'Friday, November 19, 2027',
-    label: 'Rehearsal & Welcome Dinner',
+    date: 'Thursday, November 18, 2027',
+    label: 'Rehearsal & Welcome Drinks',
     tagline: 'An evening with family and friends before the big day.',
     events: [
-      { time: '5:00 PM', name: 'Rehearsal', detail: '[Ceremony Venue], Des Moines, IA' },
-      { time: '7:00 PM', name: 'Welcome Dinner', detail: '[Dinner Venue] — dress code: cocktail attire' },
-      { time: '9:00 PM', name: 'Evening Reception', detail: 'Dancing, toasts & celebration' },
+      { time: '6:00 PM', name: 'Welcome Drinks', detail: 'Surety Hotel | Solurium \n dress code: white cocktail attire' },
     ],
   },
   {
-    day: 'Day Two',
+    day: 'Wedding Day',
     numeral: 'II',
-    date: 'Saturday, November 20, 2027',
+    date: 'Friday, November 19, 2027',
     label: 'Ceremony & Reception',
     tagline: 'The main event — ceremony, dinner, and dancing.',
     events: [
-      { time: '4:00 PM', name: 'Doors Open', detail: 'Guests welcome to be seated' },
-      { time: '4:30 PM', name: 'Ceremony', detail: '[Ceremony Venue], Des Moines, IA' },
-      { time: '5:30 PM', name: 'Cocktail Hour', detail: '[Venue] — garden terrace' },
+      { time: '3:00 PM', name: 'Ceremony', detail: 'bride, groom, and grandmas head to courthouse' },
+      { time: '3:00 PM', name: 'Cocktail Hour', detail: 'Surety Hotel | Midland Room' },
       { time: '7:00 PM', name: 'Dinner & Reception', detail: '[Reception Venue]' },
       { time: '11:00 PM', name: 'Send-off', detail: 'Farewell & sparkler exit' },
     ],
@@ -39,16 +36,16 @@ const days = [
 
   <!-- Hero -->
   <PageHero
-    eyebrow="November 19–20, 2027"
+    eyebrow="November 18–19, 2027"
     title="Details"
     subtitle="Everything you need to know about the weekend."
-    poster="https://picsum.photos/seed/maloy-celebration/1920/1080?grayscale"
+    poster="/images/IMG_0453.JPG"
   />
 
   <!-- Day cards -->
   <section class="py-24 px-6 max-w-5xl mx-auto space-y-24">
     {days.map((d, idx) => (
-      <div class:list={['grid gap-12 items-start', idx % 2 !== 0 ? 'md:grid-cols-[2fr_1fr]' : 'md:grid-cols-[1fr_2fr]']} data-reveal>
+      <div class:list={['grid gap-12 items-center', idx % 2 !== 0 ? 'md:grid-cols-[2fr_1fr]' : 'md:grid-cols-[1fr_2fr]']} data-reveal>
 
         <!-- Label side -->
         <div class:list={['md:text-right', idx % 2 !== 0 ? 'md:order-last md:text-left' : '']}>
@@ -73,7 +70,7 @@ const days = [
                 <span class="text-gold/60 text-[0.6rem] pt-2 shrink-0">&#9670;</span>
                 <div>
                   <p class="font-serif font-medium text-2xl text-brown-600 leading-tight">{event.name}</p>
-                  <p class="font-sans font-light text-sm text-taupe mt-1">{event.detail}</p>
+                  <p class="font-sans font-light text-sm text-taupe mt-1 whitespace-pre-line">{event.detail}</p>
                 </div>
               </div>
             ))}
