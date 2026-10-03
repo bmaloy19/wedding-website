@@ -21,7 +21,7 @@ const overHero = true;
     'fixed top-0 left-0 right-0 z-50 transition-all duration-500',
     overHero
       ? 'bg-transparent border-b border-transparent'
-      : 'bg-ivory/95 backdrop-blur-sm border-b border-brown-100',
+      : 'bg-ivory/95 backdrop-blur-xs border-b border-brown-100',
   ]}
 >
   <nav class="max-w-6xl mx-auto px-6 py-5 flex items-center justify-between">
@@ -60,7 +60,7 @@ const overHero = true;
     <!-- Mobile hamburger -->
     <button
       id="nav-toggle"
-      class:list={['lg:hidden focus:outline-none transition-colors duration-500', overHero ? 'text-cream' : 'text-brown-500']}
+      class:list={['lg:hidden focus:outline-hidden transition-colors duration-500', overHero ? 'text-cream' : 'text-brown-500']}
       aria-label="Toggle menu"
     >
       <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -70,7 +70,7 @@ const overHero = true;
   </nav>
 
   <!-- Mobile menu -->
-  <div id="mobile-menu" class="hidden lg:hidden border-t border-gold/20 bg-ivory/98 backdrop-blur-sm">
+  <div id="mobile-menu" class="hidden lg:hidden border-t border-gold/20 bg-ivory/98 backdrop-blur-xs">
     <ul class="flex flex-col items-center gap-7 py-10">
       {navLinks.map(link => (
         <li>
@@ -98,7 +98,7 @@ const overHero = true;
     bottom: -2px;
     height: 1px;
     width: 100%;
-    background-color: theme('colors.gold');
+    background-color: var(--color-gold);
     transform: scaleX(0);
     transform-origin: right;
     transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
@@ -125,7 +125,7 @@ const overHero = true;
     const onScroll = () => {
       const solid = window.scrollY > 40;
       nav.classList.toggle('bg-ivory/95', solid);
-      nav.classList.toggle('backdrop-blur-sm', solid);
+      nav.classList.toggle('backdrop-blur-xs', solid);
       nav.classList.toggle('border-brown-100', solid);
       nav.classList.toggle('bg-transparent', !solid);
       nav.classList.toggle('border-transparent', !solid);

@@ -64,7 +64,7 @@ const essentials = [
 
   <!-- Intro -->
   <section class="pt-24 pb-4 px-6 max-w-2xl mx-auto text-center" data-reveal>
-    <p class="font-serif text-2xl md:text-3xl italic text-brown-500 leading-relaxed">
+    <p class="font-serif text-2xl md:text-3xl md:leading-9 italic text-brown-500 leading-relaxed">
       Consider this your guide to our favorite weekend yet. We're honored you'll be
       celebrating alongside us and can't wait to share every moment with you.
     </p>
@@ -78,13 +78,13 @@ const essentials = [
         <!-- Label side -->
         <div class:list={['md:text-right', idx % 2 !== 0 ? 'md:order-last md:text-left' : '']}>
           <p class="eyebrow mb-3">{d.day}</p>
-          <h2 class="font-serif font-medium text-3xl md:text-4xl text-brown-600 italic mb-3 leading-snug">{d.label}</h2>
+          <h2 class="font-serif font-medium text-3xl md:text-4xl md:leading-10 text-brown-600 italic mb-3 leading-snug">{d.label}</h2>
           <p class="font-sans font-normal text-[0.65rem] tracking-mega uppercase text-taupe mb-4">{d.date}</p>
           <p class="font-serif text-lg italic text-brown-400 leading-relaxed">{d.tagline}</p>
         </div>
 
         <!-- Timeline -->
-        <div class="frame-luxe !p-0 overflow-hidden">
+        <div class="frame-luxe p-0! overflow-hidden">
           <div class="relative py-4">
             {d.events.map((event, i) => (
               <div class:list={[
@@ -112,7 +112,7 @@ const essentials = [
 
   <!-- The essentials -->
   <section class="py-24 bg-cream px-6 relative">
-    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-2/3 max-w-xl h-px bg-gradient-to-r from-transparent via-gold/40 to-transparent"></div>
+    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-2/3 max-w-xl h-px bg-linear-to-r from-transparent via-gold/40 to-transparent"></div>
     <div class="max-w-5xl mx-auto">
       <div data-reveal>
         <p class="eyebrow text-center mb-4">Everything you need</p>
@@ -135,7 +135,7 @@ const essentials = [
   <section class="py-24 text-center px-6 max-w-2xl mx-auto" data-reveal>
     <p class="eyebrow mb-4">A note from us</p>
     <div class="section-divider"><span class="gem"></span></div>
-    <p class="font-serif text-2xl md:text-3xl italic text-brown-500 leading-relaxed mt-6">
+    <p class="font-serif text-2xl md:text-3xl md:leading-9 italic text-brown-500 leading-relaxed mt-6">
       We dreamed of a wedding that felt less like an event and more like inviting
       everyone we love into one room. Every detail has been chosen with you in mind,
       and we can't wait to celebrate together.

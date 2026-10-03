@@ -1,9 +1,10 @@
 # wedding-website
 
-Bryce & Kacey's wedding website. Astro 6, static output, Tailwind via PostCSS (the Astro Tailwind integration is deliberately disabled in `astro.config.mjs`). Deployed to GitHub Pages by `.github/workflows/deploy.yml` on every push to `main` (site: maloywedding.com, `public/CNAME`).
+Bryce & Kacey's wedding website. Astro 7, static output, Tailwind 4 via the `@tailwindcss/vite` plugin (no PostCSS config, no `tailwind.config`). Deployed to GitHub Pages by `.github/workflows/deploy.yml` on every push to `main` (site: maloywedding.com, `public/CNAME`).
 
 ## Run
-- Node **22.22.3** (pinned in `.nvmrc`; `mise` picks it up automatically). Astro 6 needs ≥ 22.12.
+- Node **22.22.3** (pinned in `.nvmrc`; `mise` picks it up automatically). Astro 7 needs ≥ 22.12.
+- `astro.config.mjs` keeps `compressHTML: true` on purpose: Astro 7's `'jsx'` default can collapse spaces between inline elements.
 - `npm ci`, then `npm run dev` → http://localhost:4321 (`PORT` env overrides). `npm run build` must pass before pushing.
 - Preview config: `.claude/launch.json` "wedding-website".
 
@@ -14,5 +15,6 @@ Bryce & Kacey's wedding website. Astro 6, static output, Tailwind via PostCSS (t
 
 ## Design
 - "Very high end": cinematic backgrounds and real imagery, never blank placeholder boxes.
-- Palette (`tailwind.config.mjs`): Coffee `#6E4E3D` (body), Saddle `#4F3729` (headings), Bistre `#443024` (buttons), Cement `#887262` (muted), Chamoisee `#9D7F65` (accents). No Roman numerals as decoration.
+- Theme tokens live in `src/styles/global.css` under `@theme` (`--color-*`, fonts, `--tracking-widest: 0.25em`, `--ease-luxe`); in component `<style>` blocks use `var(--color-gold)`, not v3's `theme()`. Tailwind 4 always applies `leading-*` over a responsive `md:text-*` size, so pair them with an explicit `md:leading-*` when desktop spacing matters.
+- Palette: Coffee `#6E4E3D` (body), Saddle `#4F3729` (headings), Bistre `#443024` (buttons), Cement `#887262` (muted), Chamoisee `#9D7F65` (accents). No Roman numerals as decoration.
 - Open placeholders (RSVP phone numbers, the story copy, reception times, a few "details to come") are tracked in project memory. Ask before inventing real-world details.
