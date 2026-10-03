@@ -10,6 +10,9 @@ export default defineConfig({
   // are configured for your Astro version.)
   integrations: [],
   output: 'static',
+  // Astro 7 changed the default to 'jsx' whitespace rules, which can collapse the
+  // spaces between inline elements. Keep v6 behaviour so the pages render as before.
+  compressHTML: true,
   // Ensure a postcss plugins array exists so the tailwind integration can push to it
   style: {
     postcss: {
